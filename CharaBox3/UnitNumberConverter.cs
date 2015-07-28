@@ -5,22 +5,22 @@ using System.Text;
 namespace MifuminLib
 {
     /// <summary>
-    /// ’PˆÊE”’l•ÏŠ·ƒNƒ‰ƒX
-    /// ©‘RŒ¾Œê‚É‹ß‚¢Œ`‚Å‘‚©‚ê‚½’PˆÊ•t‚«‚Ì”’l‚ğ”äŠr‰Â”\‚È’Pˆê‚Ì”’l‚É•ÏŠ·‚µ‚Ü‚·B
+    /// å˜ä½ãƒ»æ•°å€¤å¤‰æ›ã‚¯ãƒ©ã‚¹
+    /// è‡ªç„¶è¨€èªã«è¿‘ã„å½¢ã§æ›¸ã‹ã‚ŒãŸå˜ä½ä»˜ãã®æ•°å€¤ã‚’æ¯”è¼ƒå¯èƒ½ãªå˜ä¸€ã®æ•°å€¤ã«å¤‰æ›ã—ã¾ã™ã€‚
     /// </summary>
     public class UnitNumberConverter
     {
         /// <summary>
-        /// •ÏŠ·‚Ìƒqƒ“ƒg‚Æ‚È‚éƒf[ƒ^‚ğ—^‚¦‚é\‘¢‘Ì
+        /// å¤‰æ›ã®ãƒ’ãƒ³ãƒˆã¨ãªã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ä¸ãˆã‚‹æ§‹é€ ä½“
         /// </summary>
         public struct Word
         {
             /// <summary>
-            /// \‘¢‘Ì‚Éƒqƒ“ƒg‚Ìƒf[ƒ^‚ğƒZƒbƒg‚µ‚Ü‚·B
+            /// æ§‹é€ ä½“ã«ãƒ’ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
             /// </summary>
-            /// <param name="text">•ÏŠ·‘ÎÛ‚Æ‚È‚é•¶š—ñ</param>
-            /// <param name="meaning">•¶š—ñ‚Ì–ğŠ„</param>
-            /// <param name="value">Šî€‚Æ‚Ì”{—¦</param>
+            /// <param name="text">å¤‰æ›å¯¾è±¡ã¨ãªã‚‹æ–‡å­—åˆ—</param>
+            /// <param name="meaning">æ–‡å­—åˆ—ã®å½¹å‰²</param>
+            /// <param name="value">åŸºæº–ã¨ã®å€ç‡</param>
             public Word(string text, Meaning meaning, double value)
             {
                 this.text = text.ToCharArray();
@@ -28,139 +28,139 @@ namespace MifuminLib
                 this.meaning = meaning;
                 this.value = value;
             }
-            public char[] text; // •ÏŠ·‘ÎÛ‚Ì•¶š”z—ñ
-            public int length;  // •ÏŠ·‘ÎÛ‚Ì•¶š—ñ‚Ì’·‚³
+            public char[] text; // å¤‰æ›å¯¾è±¡ã®æ–‡å­—é…åˆ—
+            public int length;  // å¤‰æ›å¯¾è±¡ã®æ–‡å­—åˆ—ã®é•·ã•
             /// <summary>
-            /// •¶š—ñ‚Ì–ğŠ„
+            /// æ–‡å­—åˆ—ã®å½¹å‰²
             /// </summary>
             public enum Meaning
             {
-                Value,      // 1‚ÌˆÊ‚Ì’l(0`9‚È‚Ç)
-                Hundred,    // \A•SAç‚È‚Ç‚Ì’PˆÊ(1‚ÌˆÊ‚ÅCü‚³‚ê‚é’l)
-                Thousand,   // –œA‰­‚È‚Ç‚Ì’PˆÊ(ç‚ÌˆÊˆÈ‰º‚ÅCü‚³‚ê‚é’l)
-                Unit,       // ’PˆÊ–¼
-                Point,      // ¬”“_
+                Value,      // 1ã®ä½ã®å€¤(0ï½9ãªã©)
+                Hundred,    // åã€ç™¾ã€åƒãªã©ã®å˜ä½(1ã®ä½ã§ä¿®é£¾ã•ã‚Œã‚‹å€¤)
+                Thousand,   // ä¸‡ã€å„„ãªã©ã®å˜ä½(åƒã®ä½ä»¥ä¸‹ã§ä¿®é£¾ã•ã‚Œã‚‹å€¤)
+                Unit,       // å˜ä½å
+                Point,      // å°æ•°ç‚¹
             };
-            public Meaning meaning; // •¶š—ñ‚Ì–ğŠ„
-            public double value;    // Šî€‚Æ‚Ì”{—¦
-            // ƒfƒtƒHƒ‹ƒg(’Pƒ‚È”š‚Ì‚İ)
+            public Meaning meaning; // æ–‡å­—åˆ—ã®å½¹å‰²
+            public double value;    // åŸºæº–ã¨ã®å€ç‡
+            // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ(å˜ç´”ãªæ•°å­—ã®ã¿)
             public static Word[] def = {
-                // ”¼Šp”š
+                // åŠè§’æ•°å­—
                 new Word("0", Meaning.Value, 0.0),
                 new Word("1", Meaning.Value, 1.0), new Word("2", Meaning.Value, 2.0), new Word("3", Meaning.Value, 3.0),
                 new Word("4", Meaning.Value, 4.0), new Word("5", Meaning.Value, 5.0), new Word("6", Meaning.Value, 6.0),
                 new Word("7", Meaning.Value, 7.0), new Word("8", Meaning.Value, 8.0), new Word("9", Meaning.Value, 9.0),
-                // ‘SŠp”š
-                new Word("‚O", Meaning.Value, 0.0),
-                new Word("‚P", Meaning.Value, 1.0), new Word("‚Q", Meaning.Value, 2.0), new Word("‚R", Meaning.Value, 3.0),
-                new Word("‚S", Meaning.Value, 4.0), new Word("‚T", Meaning.Value, 5.0), new Word("‚U", Meaning.Value, 6.0),
-                new Word("‚V", Meaning.Value, 7.0), new Word("‚W", Meaning.Value, 8.0), new Word("‚X", Meaning.Value, 9.0),
-                // Š¿”š
-                new Word("Z", Meaning.Value, 0.0),
-                new Word("ˆê", Meaning.Value, 1.0), new Word("“ñ", Meaning.Value, 2.0), new Word("O", Meaning.Value, 3.0),
-                new Word("l", Meaning.Value, 4.0), new Word("ŒÜ", Meaning.Value, 5.0), new Word("˜Z", Meaning.Value, 6.0),
-                new Word("µ", Meaning.Value, 7.0), new Word("”ª", Meaning.Value, 8.0), new Word("‹ã", Meaning.Value, 9.0),
-                // Š¿”š(‘åš)
-                new Word("—ë", Meaning.Value, 0.0),
-                new Word("ˆë", Meaning.Value, 1.0), new Word("“ó", Meaning.Value, 2.0), new Word("Q", Meaning.Value, 3.0),
-                new Word("ãæ", Meaning.Value, 4.0), new Word("ŒŞ", Meaning.Value, 5.0), new Word("—¤", Meaning.Value, 6.0),
-                new Word("½", Meaning.Value, 7.0), new Word("J", Meaning.Value, 8.0), new Word("‹è", Meaning.Value, 9.0),
-                // ¬”“_
-                new Word(".", Meaning.Point, 0.0), new Word("D", Meaning.Point, 0.0), new Word("B", Meaning.Point, 0.0),
-                // çˆÈ‰º
-                new Word("\", Meaning.Hundred, 1e1), new Word("•S", Meaning.Hundred, 1e2),
-                new Word("ç", Meaning.Hundred, 1e3),
-                // –œˆÈã
-                new Word("–œ", Meaning.Thousand, 1e4), new Word("‰­", Meaning.Thousand, 1e8),
-                new Word("’›", Meaning.Thousand, 1e12), new Word("‹", Meaning.Thousand, 1e16),
-                new Word("š´", Meaning.Thousand, 1e20), new Word("‰Ñ", Meaning.Thousand, 1e24),
-                new Word("õ", Meaning.Thousand, 1e28), new Word("a", Meaning.Thousand, 1e32),
-                new Word("ŠÀ", Meaning.Thousand, 1e36), new Word("³", Meaning.Thousand, 1e40),
-                new Word("Ú", Meaning.Thousand, 1e44), new Word("‹É", Meaning.Thousand, 1e48),
-                new Word("P‰Í¹", Meaning.Thousand, 1e52), new Word("ˆ¢‘m‹_", Meaning.Thousand, 1e56),
-                new Word("“ß—R‘¼", Meaning.Thousand, 1e60), new Word("•s‰Âv‹c", Meaning.Thousand, 1e64),
-                new Word("–³—Ê‘å”", Meaning.Thousand, 1e68),
-                // ˆÊæ‚è”š(‘åš)
-                new Word("E", Meaning.Hundred, 1e1), new Word("è™", Meaning.Hundred, 1e2),
-                new Word("è”", Meaning.Hundred, 1e3), new Word("äİ", Meaning.Thousand, 1e4),
-                // “Áê
-                new Word("”", Meaning.Value, 5.0),
+                // å…¨è§’æ•°å­—
+                new Word("ï¼", Meaning.Value, 0.0),
+                new Word("ï¼‘", Meaning.Value, 1.0), new Word("ï¼’", Meaning.Value, 2.0), new Word("ï¼“", Meaning.Value, 3.0),
+                new Word("ï¼”", Meaning.Value, 4.0), new Word("ï¼•", Meaning.Value, 5.0), new Word("ï¼–", Meaning.Value, 6.0),
+                new Word("ï¼—", Meaning.Value, 7.0), new Word("ï¼˜", Meaning.Value, 8.0), new Word("ï¼™", Meaning.Value, 9.0),
+                // æ¼¢æ•°å­—
+                new Word("ã€‡", Meaning.Value, 0.0),
+                new Word("ä¸€", Meaning.Value, 1.0), new Word("äºŒ", Meaning.Value, 2.0), new Word("ä¸‰", Meaning.Value, 3.0),
+                new Word("å››", Meaning.Value, 4.0), new Word("äº”", Meaning.Value, 5.0), new Word("å…­", Meaning.Value, 6.0),
+                new Word("ä¸ƒ", Meaning.Value, 7.0), new Word("å…«", Meaning.Value, 8.0), new Word("ä¹", Meaning.Value, 9.0),
+                // æ¼¢æ•°å­—(å¤§å­—)
+                new Word("é›¶", Meaning.Value, 0.0),
+                new Word("å£±", Meaning.Value, 1.0), new Word("å¼", Meaning.Value, 2.0), new Word("å‚", Meaning.Value, 3.0),
+                new Word("è‚†", Meaning.Value, 4.0), new Word("ä¼", Meaning.Value, 5.0), new Word("é™¸", Meaning.Value, 6.0),
+                new Word("æ¼†", Meaning.Value, 7.0), new Word("æŒ", Meaning.Value, 8.0), new Word("ç–", Meaning.Value, 9.0),
+                // å°æ•°ç‚¹
+                new Word(".", Meaning.Point, 0.0), new Word("ï¼", Meaning.Point, 0.0), new Word("ã€‚", Meaning.Point, 0.0),
+                // åƒä»¥ä¸‹
+                new Word("å", Meaning.Hundred, 1e1), new Word("ç™¾", Meaning.Hundred, 1e2),
+                new Word("åƒ", Meaning.Hundred, 1e3),
+                // ä¸‡ä»¥ä¸Š
+                new Word("ä¸‡", Meaning.Thousand, 1e4), new Word("å„„", Meaning.Thousand, 1e8),
+                new Word("å…†", Meaning.Thousand, 1e12), new Word("äº¬", Meaning.Thousand, 1e16),
+                new Word("å“", Meaning.Thousand, 1e20), new Word("ç¦¾", Meaning.Thousand, 1e24),
+                new Word("ç©£", Meaning.Thousand, 1e28), new Word("æº", Meaning.Thousand, 1e32),
+                new Word("æ¾—", Meaning.Thousand, 1e36), new Word("æ­£", Meaning.Thousand, 1e40),
+                new Word("è¼‰", Meaning.Thousand, 1e44), new Word("æ¥µ", Meaning.Thousand, 1e48),
+                new Word("æ’æ²³æ²™", Meaning.Thousand, 1e52), new Word("é˜¿åƒ§ç¥‡", Meaning.Thousand, 1e56),
+                new Word("é‚£ç”±ä»–", Meaning.Thousand, 1e60), new Word("ä¸å¯æ€è­°", Meaning.Thousand, 1e64),
+                new Word("ç„¡é‡å¤§æ•°", Meaning.Thousand, 1e68),
+                // ä½å–ã‚Šæ•°å­—(å¤§å­—)
+                new Word("æ‹¾", Meaning.Hundred, 1e1), new Word("é™Œ", Meaning.Hundred, 1e2),
+                new Word("é˜¡", Meaning.Hundred, 1e3), new Word("è¬", Meaning.Thousand, 1e4),
+                // ç‰¹æ®Š
+                new Word("æ•°", Meaning.Value, 5.0),
             };
-            // ’·‚³iƒ[ƒgƒ‹Šî€j
+            // é•·ã•ï¼ˆãƒ¡ãƒ¼ãƒˆãƒ«åŸºæº–ï¼‰
             public static Word[] len = {
-                new Word("ƒsƒRƒ[ƒgƒ‹", Word.Meaning.Unit, 1e-12),     new Word("ƒsƒR", Word.Meaning.Unit, 1e-12),
-                new Word("ƒiƒmƒ[ƒgƒ‹", Word.Meaning.Unit, 1e-9),      new Word("ƒiƒm", Word.Meaning.Unit, 1e-9),
-                new Word("ƒ}ƒCƒNƒƒ[ƒgƒ‹", Word.Meaning.Unit, 1e-6),  new Word("ƒ}ƒCƒNƒ", Word.Meaning.Unit, 1e-6),
-                new Word("ƒ~ƒŠƒ[ƒgƒ‹", Word.Meaning.Unit, 1e-3),      new Word("ƒ~ƒŠ", Word.Meaning.Unit, 1e-3),
-                new Word("ƒZƒ“ƒ`ƒ[ƒgƒ‹", Word.Meaning.Unit, 1e-2),    new Word("ƒZƒ“ƒ`", Word.Meaning.Unit, 1e-2),
-                new Word("ƒ[ƒgƒ‹", Word.Meaning.Unit, 1e0),
-                new Word("ƒLƒƒ[ƒgƒ‹", Word.Meaning.Unit, 1e3),       new Word("ƒLƒ", Word.Meaning.Unit, 1e3),
-                new Word("ƒƒKƒ[ƒgƒ‹", Word.Meaning.Unit, 1e6),       new Word("ƒƒK", Word.Meaning.Unit, 1e6),
-                new Word("pm", Word.Meaning.Unit, 1e-12),   new Word("‚‚", Word.Meaning.Unit, 1e-12),
-                new Word("nm", Word.Meaning.Unit, 1e-9),    new Word("‚‚", Word.Meaning.Unit, 1e-9),
-                new Word("um", Word.Meaning.Unit, 1e-6),    new Word("‚•‚", Word.Meaning.Unit, 1e-6),
-                new Word("mm", Word.Meaning.Unit, 1e-3),    new Word("‚‚", Word.Meaning.Unit, 1e-3),
-                new Word("cm", Word.Meaning.Unit, 1e-2),    new Word("‚ƒ‚", Word.Meaning.Unit, 1e-2),
-                new Word("m", Word.Meaning.Unit, 1e-0),     new Word("‚", Word.Meaning.Unit, 1e-0),
-                new Word("km", Word.Meaning.Unit, 1e3),     new Word("‚‹‚", Word.Meaning.Unit, 1e3),
-                new Word("Mm", Word.Meaning.Unit, 1e6),     new Word("‚l‚", Word.Meaning.Unit, 1e6),
-                new Word("ƒ[ƒ^[", Word.Meaning.Unit, 1e-0),
-                new Word("ƒ~ƒNƒƒ“", Word.Meaning.Unit, 1e-6),
-                new Word("ƒÊ", Word.Meaning.Unit, 1e-6),
-                new Word("ƒÊm", Word.Meaning.Unit, 1e-6),
-                new Word("ƒÊ‚", Word.Meaning.Unit, 1e-6),
-                new Word("“V•¶’PˆÊ", Word.Meaning.Unit, 1.496e11),
-                new Word("Œõ”N", Word.Meaning.Unit, 9.46e15),
-                new Word("ƒp[ƒZƒN", Word.Meaning.Unit, 30.86e15),
-                new Word("ƒIƒ“ƒOƒXƒgƒ[ƒ€", Word.Meaning.Unit, 1e-10),     new Word("ğ", Word.Meaning.Unit, 1e-10),
-                new Word("ƒo[ƒŒƒCƒR[ƒ“", Word.Meaning.Unit, 0.008467),    new Word("barleycorn", Word.Meaning.Unit, 0.008467),
-                new Word("ƒCƒ“ƒ`", Word.Meaning.Unit, 0.0254),              new Word("inch", Word.Meaning.Unit, 0.0254),
-                new Word("ƒtƒB[ƒg", Word.Meaning.Unit, 0.3048),            new Word("feet", Word.Meaning.Unit, 0.3048),
-                new Word("ƒ„[ƒh", Word.Meaning.Unit, 0.9144),              new Word("yard", Word.Meaning.Unit, 0.9144),
-                new Word("ƒ|[ƒ‹", Word.Meaning.Unit, 5.0292),              new Word("pole", Word.Meaning.Unit, 5.0292),
-                new Word("ƒ`ƒF[ƒ“", Word.Meaning.Unit, 20.1168),           new Word("chain", Word.Meaning.Unit, 20.1168),
-                new Word("ƒnƒƒ“", Word.Meaning.Unit, 201.168),             new Word("furlong", Word.Meaning.Unit, 201.168),
-                new Word("ƒ}ƒCƒ‹", Word.Meaning.Unit, 1609.344),            new Word("mile", Word.Meaning.Unit, 1609.344),
-                new Word("ƒŠ[ƒO", Word.Meaning.Unit, 4828.032),            new Word("league", Word.Meaning.Unit, 4828.032),
+                new Word("ãƒ”ã‚³ãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e-12),     new Word("ãƒ”ã‚³", Word.Meaning.Unit, 1e-12),
+                new Word("ãƒŠãƒãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e-9),      new Word("ãƒŠãƒ", Word.Meaning.Unit, 1e-9),
+                new Word("ãƒã‚¤ã‚¯ãƒ­ãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e-6),  new Word("ãƒã‚¤ã‚¯ãƒ­", Word.Meaning.Unit, 1e-6),
+                new Word("ãƒŸãƒªãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e-3),      new Word("ãƒŸãƒª", Word.Meaning.Unit, 1e-3),
+                new Word("ã‚»ãƒ³ãƒãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e-2),    new Word("ã‚»ãƒ³ãƒ", Word.Meaning.Unit, 1e-2),
+                new Word("ãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e0),
+                new Word("ã‚­ãƒ­ãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e3),       new Word("ã‚­ãƒ­", Word.Meaning.Unit, 1e3),
+                new Word("ãƒ¡ã‚¬ãƒ¡ãƒ¼ãƒˆãƒ«", Word.Meaning.Unit, 1e6),       new Word("ãƒ¡ã‚¬", Word.Meaning.Unit, 1e6),
+                new Word("pm", Word.Meaning.Unit, 1e-12),   new Word("ï½ï½", Word.Meaning.Unit, 1e-12),
+                new Word("nm", Word.Meaning.Unit, 1e-9),    new Word("ï½ï½", Word.Meaning.Unit, 1e-9),
+                new Word("um", Word.Meaning.Unit, 1e-6),    new Word("ï½•ï½", Word.Meaning.Unit, 1e-6),
+                new Word("mm", Word.Meaning.Unit, 1e-3),    new Word("ï½ï½", Word.Meaning.Unit, 1e-3),
+                new Word("cm", Word.Meaning.Unit, 1e-2),    new Word("ï½ƒï½", Word.Meaning.Unit, 1e-2),
+                new Word("m", Word.Meaning.Unit, 1e-0),     new Word("ï½", Word.Meaning.Unit, 1e-0),
+                new Word("km", Word.Meaning.Unit, 1e3),     new Word("ï½‹ï½", Word.Meaning.Unit, 1e3),
+                new Word("Mm", Word.Meaning.Unit, 1e6),     new Word("ï¼­ï½", Word.Meaning.Unit, 1e6),
+                new Word("ãƒ¡ãƒ¼ã‚¿ãƒ¼", Word.Meaning.Unit, 1e-0),
+                new Word("ãƒŸã‚¯ãƒ­ãƒ³", Word.Meaning.Unit, 1e-6),
+                new Word("Î¼", Word.Meaning.Unit, 1e-6),
+                new Word("Î¼m", Word.Meaning.Unit, 1e-6),
+                new Word("Î¼ï½", Word.Meaning.Unit, 1e-6),
+                new Word("å¤©æ–‡å˜ä½", Word.Meaning.Unit, 1.496e11),
+                new Word("å…‰å¹´", Word.Meaning.Unit, 9.46e15),
+                new Word("ãƒ‘ãƒ¼ã‚»ã‚¯", Word.Meaning.Unit, 30.86e15),
+                new Word("ã‚ªãƒ³ã‚°ã‚¹ãƒˆãƒ­ãƒ¼ãƒ ", Word.Meaning.Unit, 1e-10),     new Word("â„«", Word.Meaning.Unit, 1e-10),
+                new Word("ãƒãƒ¼ãƒ¬ã‚¤ã‚³ãƒ¼ãƒ³", Word.Meaning.Unit, 0.008467),    new Word("barleycorn", Word.Meaning.Unit, 0.008467),
+                new Word("ã‚¤ãƒ³ãƒ", Word.Meaning.Unit, 0.0254),              new Word("inch", Word.Meaning.Unit, 0.0254),
+                new Word("ãƒ•ã‚£ãƒ¼ãƒˆ", Word.Meaning.Unit, 0.3048),            new Word("feet", Word.Meaning.Unit, 0.3048),
+                new Word("ãƒ¤ãƒ¼ãƒ‰", Word.Meaning.Unit, 0.9144),              new Word("yard", Word.Meaning.Unit, 0.9144),
+                new Word("ãƒãƒ¼ãƒ«", Word.Meaning.Unit, 5.0292),              new Word("pole", Word.Meaning.Unit, 5.0292),
+                new Word("ãƒã‚§ãƒ¼ãƒ³", Word.Meaning.Unit, 20.1168),           new Word("chain", Word.Meaning.Unit, 20.1168),
+                new Word("ãƒãƒ­ãƒ³", Word.Meaning.Unit, 201.168),             new Word("furlong", Word.Meaning.Unit, 201.168),
+                new Word("ãƒã‚¤ãƒ«", Word.Meaning.Unit, 1609.344),            new Word("mile", Word.Meaning.Unit, 1609.344),
+                new Word("ãƒªãƒ¼ã‚°", Word.Meaning.Unit, 4828.032),            new Word("league", Word.Meaning.Unit, 4828.032),
                 new Word("in", Word.Meaning.Unit, 0.0254),
                 new Word("ft", Word.Meaning.Unit, 0.3048),
                 new Word("yd", Word.Meaning.Unit, 0.9144),
                 new Word("foot", Word.Meaning.Unit, 0.3048),
-                new Word("—¢", Word.Meaning.Unit, 3926.88),
-                new Word("’¬", Word.Meaning.Unit, 109.08),
-                new Word("ŠÔ", Word.Meaning.Unit, 1.818),
-                new Word("ä", Word.Meaning.Unit, 3.03),
-                new Word("Ú", Word.Meaning.Unit, 0.303),
-                new Word("¡", Word.Meaning.Unit, 0.0303),
+                new Word("é‡Œ", Word.Meaning.Unit, 3926.88),
+                new Word("ç”º", Word.Meaning.Unit, 109.08),
+                new Word("é–“", Word.Meaning.Unit, 1.818),
+                new Word("ä¸ˆ", Word.Meaning.Unit, 3.03),
+                new Word("å°º", Word.Meaning.Unit, 0.303),
+                new Word("å¯¸", Word.Meaning.Unit, 0.0303),
             };
-            // ŠÔi”N—îj
+            // æ™‚é–“ï¼ˆå¹´é½¢ï¼‰
             public static Word[] time = {
-                new Word("•b", Word.Meaning.Unit, 1.0),
-                new Word("•ª", Word.Meaning.Unit, 60.0),
-                new Word("ŠÔ", Word.Meaning.Unit, 3600.0),
-                new Word("“ú", Word.Meaning.Unit, 86400.0),
-                new Word("T", Word.Meaning.Unit, 604800.0),
-                new Word("Œ", Word.Meaning.Unit, 2592000.0),
-                new Word("”N", Word.Meaning.Unit, 31536000.0),
-                new Word("Î", Word.Meaning.Unit, 31536000.0),      new Word("Ë", Word.Meaning.Unit, 31536000.0),
-                new Word("¢‹I", Word.Meaning.Unit, 3153600000.0),
-                new Word("ƒ~ƒŠ•b", Word.Meaning.Unit, 1.0e-3),
-                new Word("m•b", Word.Meaning.Unit, 1.0e-3),         new Word("‚•b", Word.Meaning.Unit, 1.0e-3),
-                new Word("ƒ}ƒCƒNƒ•b", Word.Meaning.Unit, 1.0e-6),
-                new Word("ƒÊ•b", Word.Meaning.Unit, 1.0e-6),
-                new Word("u•b", Word.Meaning.Unit, 1.0e-6),         new Word("‚••b", Word.Meaning.Unit, 1.0e-6),
-                new Word("ƒiƒm•b", Word.Meaning.Unit, 1.0e-9),
-                new Word("n•b", Word.Meaning.Unit, 1.0e-9),         new Word("‚•b", Word.Meaning.Unit, 1.0e-9),
-                new Word("ƒsƒR•b", Word.Meaning.Unit, 1.0e-12),
-                new Word("p•b", Word.Meaning.Unit, 1.0e-12),        new Word("‚•b", Word.Meaning.Unit, 1.0e-12),
-                // ‚±‚ê‚Í‚¿‚å‚Á‚Æ“Á•ÊB
-                new Word("‘ã", Word.Meaning.Unit, 31536000.000001),
+                new Word("ç§’", Word.Meaning.Unit, 1.0),
+                new Word("åˆ†", Word.Meaning.Unit, 60.0),
+                new Word("æ™‚é–“", Word.Meaning.Unit, 3600.0),
+                new Word("æ—¥", Word.Meaning.Unit, 86400.0),
+                new Word("é€±", Word.Meaning.Unit, 604800.0),
+                new Word("æœˆ", Word.Meaning.Unit, 2592000.0),
+                new Word("å¹´", Word.Meaning.Unit, 31536000.0),
+                new Word("æ­³", Word.Meaning.Unit, 31536000.0),      new Word("æ‰", Word.Meaning.Unit, 31536000.0),
+                new Word("ä¸–ç´€", Word.Meaning.Unit, 3153600000.0),
+                new Word("ãƒŸãƒªç§’", Word.Meaning.Unit, 1.0e-3),
+                new Word("mç§’", Word.Meaning.Unit, 1.0e-3),         new Word("ï½ç§’", Word.Meaning.Unit, 1.0e-3),
+                new Word("ãƒã‚¤ã‚¯ãƒ­ç§’", Word.Meaning.Unit, 1.0e-6),
+                new Word("Î¼ç§’", Word.Meaning.Unit, 1.0e-6),
+                new Word("uç§’", Word.Meaning.Unit, 1.0e-6),         new Word("ï½•ç§’", Word.Meaning.Unit, 1.0e-6),
+                new Word("ãƒŠãƒç§’", Word.Meaning.Unit, 1.0e-9),
+                new Word("nç§’", Word.Meaning.Unit, 1.0e-9),         new Word("ï½ç§’", Word.Meaning.Unit, 1.0e-9),
+                new Word("ãƒ”ã‚³ç§’", Word.Meaning.Unit, 1.0e-12),
+                new Word("pç§’", Word.Meaning.Unit, 1.0e-12),        new Word("ï½ç§’", Word.Meaning.Unit, 1.0e-12),
+                // ã“ã‚Œã¯ã¡ã‚‡ã£ã¨ç‰¹åˆ¥ã€‚
+                new Word("ä»£", Word.Meaning.Unit, 31536000.000001),
             };
         };
         Word[] dic;
 
         /// <summary>
-        /// Word\‘¢‘Ì‚Ì•À‚×‘Ö‚¦Šî€
+        /// Wordæ§‹é€ ä½“ã®ä¸¦ã¹æ›¿ãˆåŸºæº–
         /// </summary>
         public class WordComparer : System.Collections.IComparer
         {
@@ -171,15 +171,15 @@ namespace MifuminLib
         }
 
         /// <summary>
-        /// ’PˆÊE”’l•ÏŠ·ƒNƒ‰ƒX‚ğWord\‘¢‘Ì‚Å‰Šú‰»‚µ‚Ü‚·
+        /// å˜ä½ãƒ»æ•°å€¤å¤‰æ›ã‚¯ãƒ©ã‚¹ã‚’Wordæ§‹é€ ä½“ã§åˆæœŸåŒ–ã—ã¾ã™
         /// </summary>
-        /// <param name="pairs">Word\‘¢‘Ì(•¡”w’è‰Â)</param>
+        /// <param name="pairs">Wordæ§‹é€ ä½“(è¤‡æ•°æŒ‡å®šå¯)</param>
         public UnitNumberConverter(params Word[] pairs) : this(new Word[][] { pairs }) { }
 
         /// <summary>
-        /// ’PˆÊE”’l•ÏŠ·ƒNƒ‰ƒX‚ğWord\‘¢‘Ì‚Ì”z—ñ‚Å‰Šú‰»‚µ‚Ü‚·
+        /// å˜ä½ãƒ»æ•°å€¤å¤‰æ›ã‚¯ãƒ©ã‚¹ã‚’Wordæ§‹é€ ä½“ã®é…åˆ—ã§åˆæœŸåŒ–ã—ã¾ã™
         /// </summary>
-        /// <param name="pairs">Word\‘¢‘Ì‚Ì”z—ñ(•¡”w’è‰Â)</param>
+        /// <param name="pairs">Wordæ§‹é€ ä½“ã®é…åˆ—(è¤‡æ•°æŒ‡å®šå¯)</param>
         public UnitNumberConverter(params Word[][] pairs)
         {
             int nDicSize = 0;
@@ -200,7 +200,7 @@ namespace MifuminLib
 /*        public UnitNumberConverter(Word[] pairs)
         {
             dic = pairs;
-            // ’·‚³‚É‚Â‚¢‚Ä~‡‚É•À‚×‚é
+            // é•·ã•ã«ã¤ã„ã¦é™é †ã«ä¸¦ã¹ã‚‹
             Array.Sort(dic, new WordComparer());
         }
 
@@ -209,23 +209,23 @@ namespace MifuminLib
             dic = new Word[pairs1.Length + pairs2.Length];
             pairs1.CopyTo(dic, 0);
             pairs2.CopyTo(dic, pairs1.Length);
-            // ’·‚³‚É‚Â‚¢‚Ä~‡‚É•À‚×‚é
+            // é•·ã•ã«ã¤ã„ã¦é™é †ã«ä¸¦ã¹ã‚‹
             Array.Sort(dic, new WordComparer());
         }*/
 
         /// <summary>
-        /// •¶š—ñ‚ğŠî–{’PˆÊ‚Å•\‚µ‚½”’l‚É•ÏŠ·‚µ‚Ü‚·
+        /// æ–‡å­—åˆ—ã‚’åŸºæœ¬å˜ä½ã§è¡¨ã—ãŸæ•°å€¤ã«å¤‰æ›ã—ã¾ã™
         /// </summary>
-        /// <param name="str">•ÏŠ·‘ÎÛ‚Ì•¶š—ñ</param>
-        /// <returns>•ÏŠ·‚³‚ê‚½”’l</returns>
+        /// <param name="str">å¤‰æ›å¯¾è±¡ã®æ–‡å­—åˆ—</param>
+        /// <returns>å¤‰æ›ã•ã‚ŒãŸæ•°å€¤</returns>
         public double GetValue(string str)
         {
-            double sum = 0.0;   // Lv0:’PˆÊ‚àl—¶‚µ‚½—Ê
-            double val = 0.0;   // Lv1:Šm’è‚µ‚½”’l
-            double ths = 0.0;   // Lv2:Šm’è‚µ‚½®”
-            double hnd = 0.0;   // Lv3:\A•SŒÜ\‚È‚ÇAçˆÈ‰º‚Ì®”
-            double num = 0.0;   // Lv4:123‚È‚Ç‚Ì”’l
-            double dec = 0.0;   // ¬”‚ÌˆÊ
+            double sum = 0.0;   // Lv0:å˜ä½ã‚‚è€ƒæ…®ã—ãŸé‡
+            double val = 0.0;   // Lv1:ç¢ºå®šã—ãŸæ•°å€¤
+            double ths = 0.0;   // Lv2:ç¢ºå®šã—ãŸæ•´æ•°
+            double hnd = 0.0;   // Lv3:åã€ç™¾äº”åãªã©ã€åƒä»¥ä¸‹ã®æ•´æ•°
+            double num = 0.0;   // Lv4:123ãªã©ã®æ•°å€¤
+            double dec = 0.0;   // å°æ•°ã®ä½
             char[] text = str.ToCharArray();
             int length = str.Length;
             int i, j, k;
@@ -233,7 +233,7 @@ namespace MifuminLib
             Word word;
             for (i = 0; i < str.Length; i++)
             {
-                // ˆê’v‚·‚é’PŒê‚ğ’T‚·(’·‚³‚É‚Â‚¢‚Ä~‡‚É•À‚ñ‚Å‚é‚Ì‚ÅÅ’·ˆê’v)
+                // ä¸€è‡´ã™ã‚‹å˜èªã‚’æ¢ã™(é•·ã•ã«ã¤ã„ã¦é™é †ã«ä¸¦ã‚“ã§ã‚‹ã®ã§æœ€é•·ä¸€è‡´)
                 for (j = 0; j < dic.Length; j++)
                 {
                     word = dic[j];
@@ -244,10 +244,10 @@ namespace MifuminLib
                         if (word.text[k] != text[i + k]) break;
                         if (k == max)
                         {
-                            // ˆê’v‚µ‚½I
+                            // ä¸€è‡´ã—ãŸï¼
                             switch (word.meaning)
                             {
-                                case Word.Meaning.Value:      // •’Ê‚Ì”š
+                                case Word.Meaning.Value:      // æ™®é€šã®æ•°å­—
                                     if (dec == 0.0)
                                     {
                                         num *= 10.0;
@@ -259,7 +259,7 @@ namespace MifuminLib
                                         val += dec * word.value;
                                     }
                                     break;
-                                case Word.Meaning.Hundred:    // ç‚Æ‚©•S‚Æ‚©\‚Æ‚©
+                                case Word.Meaning.Hundred:    // åƒã¨ã‹ç™¾ã¨ã‹åã¨ã‹
                                     if (num != 0.0)
                                     {
                                         hnd += num * word.value;
@@ -279,7 +279,7 @@ namespace MifuminLib
                                     }
                                     dec = 0.0;
                                     break;
-                                case Word.Meaning.Thousand:   // ‰­‚Æ‚©–œ‚Æ‚©
+                                case Word.Meaning.Thousand:   // å„„ã¨ã‹ä¸‡ã¨ã‹
                                     if (num != 0.0 || hnd != 0.0)
                                     {
                                         ths += (hnd + num) * word.value;
@@ -299,19 +299,19 @@ namespace MifuminLib
                                     }
                                     dec = 0.0;
                                     break;
-                                case Word.Meaning.Unit:       // ’PˆÊ
+                                case Word.Meaning.Unit:       // å˜ä½
                                     sum += (val + ths + hnd + num) * word.value;
                                     val = ths = hnd = num = 0.0;
                                     dec = 0.0;
                                     break;
-                                case Word.Meaning.Point:      // ¬”“_
+                                case Word.Meaning.Point:      // å°æ•°ç‚¹
                                     val += ths + hnd + num;
                                     ths = hnd = num = 0.0;
                                     dec = 1.0;
                                     break;
                                 default: break;
                             }
-                            // ‰ğÍ‚ªÏ‚ñ‚¾•ªƒ|ƒCƒ“ƒ^‚ği‚ß‚é
+                            // è§£æãŒæ¸ˆã‚“ã åˆ†ãƒã‚¤ãƒ³ã‚¿ã‚’é€²ã‚ã‚‹
                             i += max;
                             j = dic.Length;
                         }
@@ -322,11 +322,11 @@ namespace MifuminLib
         }
 
         /// <summary>
-        /// •¶š—ñ‚ğ”CˆÓ‚Ì’PˆÊ‚Å•\‚µ‚½”’l‚É•ÏŠ·‚µ‚Ü‚·
+        /// æ–‡å­—åˆ—ã‚’ä»»æ„ã®å˜ä½ã§è¡¨ã—ãŸæ•°å€¤ã«å¤‰æ›ã—ã¾ã™
         /// </summary>
-        /// <param name="source">•ÏŠ·‘ÎÛ‚Ì•¶š—ñ</param>
-        /// <param name="unit">Šî€‚Æ‚È‚é’PˆÊ</param>
-        /// <returns>•ÏŠ·‚³‚ê‚½”’l</returns>
+        /// <param name="source">å¤‰æ›å¯¾è±¡ã®æ–‡å­—åˆ—</param>
+        /// <param name="unit">åŸºæº–ã¨ãªã‚‹å˜ä½</param>
+        /// <returns>å¤‰æ›ã•ã‚ŒãŸæ•°å€¤</returns>
         public double Convert(string source, string unit)
         {
             return GetValue(source) / GetValue(unit);
@@ -334,7 +334,7 @@ namespace MifuminLib
     }
 
     /// <summary>
-    /// UnitNumberConverter‚Ì’·‚³‚É“Á‰»‚µ‚½ƒo[ƒWƒ‡ƒ“
+    /// UnitNumberConverterã®é•·ã•ã«ç‰¹åŒ–ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
     /// </summary>
     public class LengthConverter : UnitNumberConverter
     {
@@ -342,7 +342,7 @@ namespace MifuminLib
     }
 
     /// <summary>
-    /// UnitNumberConverter‚ÌŠÔ‚É“Á‰»‚µ‚½ƒo[ƒWƒ‡ƒ“
+    /// UnitNumberConverterã®æ™‚é–“ã«ç‰¹åŒ–ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
     /// </summary>
     public class TimeConverter : UnitNumberConverter
     {
@@ -350,8 +350,8 @@ namespace MifuminLib
     }
 
     /// <summary>
-    /// PhysicalQuantityAnalyzer‚ÍUnitNumberConverter‚É–¼Ì•ÏX‚µ‚Ü‚µ‚½B
-    /// ¡Œã‚ÍUnitNumberConverter‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+    /// PhysicalQuantityAnalyzerã¯UnitNumberConverterã«åç§°å¤‰æ›´ã—ã¾ã—ãŸã€‚
+    /// ä»Šå¾Œã¯UnitNumberConverterã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
     /// </summary>
     public class PhysicalQuantityAnalyzer : UnitNumberConverter
     {

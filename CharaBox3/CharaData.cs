@@ -7,7 +7,7 @@ using MifuminLib;
 
 namespace CharaBox3
 {
-    /// <summary>ƒLƒƒƒ‰ƒf[ƒ^‚ğŠÇ—‚µ‚Ä‚¢‚éƒNƒ‰ƒXB</summary>
+    /// <summary>ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’ç®¡ç†ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹ã€‚</summary>
     public class CharaData
     {
         string fileName;
@@ -72,7 +72,7 @@ namespace CharaBox3
             public bool Match(CharaInfo chara)
             {
                 bool match;
-                // –¼‘O
+                // åå‰
                 if (namematch)
                 {
                     match = false;
@@ -89,7 +89,7 @@ namespace CharaBox3
                 {
                     foreach (string s in chara.name) { if (s.Contains(name)) return false; }
                 }
-                // “oêì•i
+                // ç™»å ´ä½œå“
                 if (gamematch)
                 {
                     match = false;
@@ -106,27 +106,27 @@ namespace CharaBox3
                 {
                     foreach (string s in chara.game) { if (s.Contains(game)) return false; }
                 }
-                // à–¾
+                // èª¬æ˜
                 if (descriptionmatch) { if (chara.description != description) return false; }
                 else if (descriptioncontain) { if (!chara.description.Contains(description)) return false; }
                 else if (descriptionnotcontain) { if (chara.description.Contains(description)) return false; }
-                // ‰æ‘œ
+                // ç”»åƒ
                 if (graphicmatch) { if (chara.graphic != graphic) return false; }
                 else if (graphiccontain) { if (!chara.graphic.Contains(graphic)) return false; }
                 else if (graphicnotcontain) { if (chara.graphic.Contains(graphic)) return false; }
-                // «•Ê
+                // æ€§åˆ¥
                 if (sexmatch) { if (chara.sex != sex) return false; }
                 else if (sexnotmatch) { if (chara.sex == sex) return false; }
-                // ”N—î‰ºŒÀ
+                // å¹´é½¢ä¸‹é™
                 if (ageminormore) { if (pqaAge.GetValue(chara.age) < pqaAge.GetValue(agemin)) return false; }
                 else if (ageminmore) { if (pqaAge.GetValue(chara.age) <= pqaAge.GetValue(agemin)) return false; }
-                // ”N—îãŒÀ
+                // å¹´é½¢ä¸Šé™
                 if (agemaxorless) { if (pqaAge.GetValue(chara.age) > pqaAge.GetValue(agemax)) return false; }
                 else if (agemaxless) { if (pqaAge.GetValue(chara.age) >= pqaAge.GetValue(agemax)) return false; }
-                // ‘å‚«‚³‰ºŒÀ
+                // å¤§ãã•ä¸‹é™
                 if (sizeminormore) { if (pqaSize.GetValue(chara.size) < pqaSize.GetValue(sizemin)) return false; }
                 else if (sizeminmore) { if (pqaSize.GetValue(chara.size) <= pqaSize.GetValue(sizemin)) return false; }
-                // ‘å‚«‚³ãŒÀ
+                // å¤§ãã•ä¸Šé™
                 if (sizemaxorless) { if (pqaSize.GetValue(chara.size) > pqaSize.GetValue(sizemax)) return false; }
                 else if (sizemaxless) { if (pqaSize.GetValue(chara.size) >= pqaSize.GetValue(sizemax)) return false; }
                 return true;
@@ -223,11 +223,11 @@ namespace CharaBox3
             }
             catch (FileNotFoundException)
             {
-                return true;    // ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢‚È‚çV‹Kì¬
+                return true;    // ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„ãªã‚‰æ–°è¦ä½œæˆ
             }
             catch (Exception)
             {
-                return false;   // ‚»‚Ì‘¼ƒGƒ‰[‚È‚ç“Ç‚İ‚Ü‚È‚¢
+                return false;   // ãã®ä»–ã‚¨ãƒ©ãƒ¼ãªã‚‰èª­ã¿è¾¼ã¾ãªã„
             }
         }
 
@@ -272,24 +272,24 @@ namespace CharaBox3
         static public string GetSex(CharaInfo.Sex sex)
         {
             return
-                sex == CharaInfo.Sex.Unknown ? "•s–¾" :
-                sex == CharaInfo.Sex.Male ? "’j" :
-                sex == CharaInfo.Sex.Female ? "—" :
-                sex == CharaInfo.Sex.Bisexual ? "—¼«" :
-                sex == CharaInfo.Sex.Mixed ? "¬‡" :
-                sex == CharaInfo.Sex.None ? "‚È‚µ" :
-                "•s–¾";
+                sex == CharaInfo.Sex.Unknown ? "ä¸æ˜" :
+                sex == CharaInfo.Sex.Male ? "ç”·" :
+                sex == CharaInfo.Sex.Female ? "å¥³" :
+                sex == CharaInfo.Sex.Bisexual ? "ä¸¡æ€§" :
+                sex == CharaInfo.Sex.Mixed ? "æ··åˆ" :
+                sex == CharaInfo.Sex.None ? "ãªã—" :
+                "ä¸æ˜";
         }
 
         static public CharaInfo.Sex GetSex(string sex)
         {
             return
-                sex == "•s–¾" ? CharaInfo.Sex.Unknown :
-                sex == "’j" ? CharaInfo.Sex.Male :
-                sex == "—" ? CharaInfo.Sex.Female :
-                sex == "—¼«" ? CharaInfo.Sex.Bisexual :
-                sex == "¬‡" ? CharaInfo.Sex.Mixed :
-                sex == "‚È‚µ" ? CharaInfo.Sex.None :
+                sex == "ä¸æ˜" ? CharaInfo.Sex.Unknown :
+                sex == "ç”·" ? CharaInfo.Sex.Male :
+                sex == "å¥³" ? CharaInfo.Sex.Female :
+                sex == "ä¸¡æ€§" ? CharaInfo.Sex.Bisexual :
+                sex == "æ··åˆ" ? CharaInfo.Sex.Mixed :
+                sex == "ãªã—" ? CharaInfo.Sex.None :
                 CharaInfo.Sex.Unknown;
         }
 
@@ -321,11 +321,11 @@ namespace CharaBox3
                 DateTime date = DateTime.Parse(age);
                 int nAge = DateTime.Now.Year - date.Year;
                 if (DateTime.Now.Month * 32 + DateTime.Now.Day < date.Month * 32 + date.Day) nAge--;
-                if (nAge != 0) return nAge + "Î";
+                if (nAge != 0) return nAge + "æ­³";
                 int nMonth = DateTime.Now.Month - date.Month;
                 if (DateTime.Now.Day < date.Day) nMonth--;
                 if (nMonth < 0) nMonth += 12;
-                return DateTime.Now.Subtract(date).Days + "“ú";
+                return DateTime.Now.Subtract(date).Days + "æ—¥";
             }
             catch (Exception)
             {

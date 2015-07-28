@@ -183,7 +183,7 @@ namespace CharaBox3
                 return ret;
             }
         }
-        
+
         #endregion
 
         public Form1() { InitializeComponent(); }
@@ -326,13 +326,13 @@ namespace CharaBox3
             tvChara.Nodes.Clear();
             if (sortedList.Length != data.chara.Length)
             {
-                // ƒŠƒXƒg‚ª‘Œ¸‚µ‚½
+                // ãƒªã‚¹ãƒˆãŒå¢—æ¸›ã—ãŸ
                 int oldLength = sortedList.Length, newLength = data.chara.Length;
                 int start = oldLength < newLength ? oldLength : 0;
                 Array.Resize(ref sortedList, newLength);
                 for (int i = start; i < newLength; i++) sortedList[i] = i;
             }
-            // •\¦Œ`®•Ê‚Ìˆ—
+            // è¡¨ç¤ºå½¢å¼åˆ¥ã®å‡¦ç†
             switch (view)
             {
                 case ViewMode.ABC: LayoutTVABC(); break;
@@ -377,21 +377,21 @@ namespace CharaBox3
 
         void LayoutTVABC()
         {
-            // ƒJƒeƒSƒŠ
+            // ã‚«ãƒ†ã‚´ãƒª
             string[] catABC = {
-                        "‚ ","‚¢","‚¤","‚¦","‚¨", "‚©","‚«","‚­","‚¯","‚±",
-                        "‚³","‚µ","‚·","‚¹","‚»", "‚½","‚¿","‚Â","‚Ä","‚Æ",
-                        "‚È","‚É","‚Ê","‚Ë","‚Ì", "‚Í","‚Ğ","‚Ó","‚Ö","‚Ù",
-                        "‚Ü","‚İ","‚Ş","‚ß","‚à", "‚â",     "‚ä",     "‚æ",
-                        "‚ç","‚è","‚é","‚ê","‚ë", "‚í","‚î",
+                        "ã‚","ã„","ã†","ãˆ","ãŠ", "ã‹","ã","ã","ã‘","ã“",
+                        "ã•","ã—","ã™","ã›","ã", "ãŸ","ã¡","ã¤","ã¦","ã¨",
+                        "ãª","ã«","ã¬","ã­","ã®", "ã¯","ã²","ãµ","ã¸","ã»",
+                        "ã¾","ã¿","ã‚€","ã‚","ã‚‚", "ã‚„",     "ã‚†",     "ã‚ˆ",
+                        "ã‚‰","ã‚Š","ã‚‹","ã‚Œ","ã‚", "ã‚","ã‚",
                     };
-            tvChara.Nodes.Add("ABC", "ƒAƒ‹ƒtƒ@ƒxƒbƒgE‹L†");
+            tvChara.Nodes.Add("ABC", "ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆãƒ»è¨˜å·");
             for (int i = 0; i < catABC.Length - 1; i++)
             {
                 tvChara.Nodes.Add(catABC[i], catABC[i]);
             }
-            tvChara.Nodes.Add("‚î", "Š¿šE‚»‚Ì‘¼");
-            // ƒf[ƒ^
+            tvChara.Nodes.Add("ã‚", "æ¼¢å­—ãƒ»ãã®ä»–");
+            // ãƒ‡ãƒ¼ã‚¿
             Array.Sort(sortedList, new ComparerABC(ref data.chara));
             TreeNode nodeABC = tvChara.Nodes.Find("ABC", false)[0];
             int j = 0;
@@ -443,7 +443,7 @@ namespace CharaBox3
                         new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             for (int i = 0; i < data.chara.Length; i++)
             {
-                tvChara.Nodes.Add(sortedList[i].ToString(), data.chara[sortedList[i]].description.Length.ToString() + "š " + data.chara[sortedList[i]].name[0]);
+                tvChara.Nodes.Add(sortedList[i].ToString(), data.chara[sortedList[i]].description.Length.ToString() + "å­— " + data.chara[sortedList[i]].name[0]);
             }
         }
         void LayoutTVGame()
@@ -533,7 +533,7 @@ namespace CharaBox3
                     nodeGame = new TreeNode(currentGame);
                     tvChara.Nodes.Add(nodeGame);
                 }
-                nodeGame.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "š " + data.chara[j].name[0]);
+                nodeGame.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "å­— " + data.chara[j].name[0]);
             }
         }
         void LayoutTVGameSex()
@@ -581,7 +581,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     nodeGame.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[j].name[0]);
@@ -674,7 +674,7 @@ namespace CharaBox3
                     nodeSex = new TreeNode(CharaData.GetSex(data.chara[j].sex));
                     tvChara.Nodes.Add(nodeSex);
                 }
-                nodeSex.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "š " + data.chara[j].name[0]);
+                nodeSex.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "å­— " + data.chara[j].name[0]);
             }
         }
         void LayoutTVSexGame()
@@ -723,7 +723,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     nodeSex.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[j].name[0]);
@@ -741,7 +741,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[j].name[0]);
@@ -759,7 +759,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
@@ -777,7 +777,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[j].name[0]);
@@ -795,7 +795,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[j].name[0]);
@@ -813,10 +813,10 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                 }
-                nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "š " + data.chara[j].name[0]);
+                nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "å­— " + data.chara[j].name[0]);
             }
         }
         void LayoutTVGraphicsGame()
@@ -831,7 +831,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                     currentGame = null;
                 }
@@ -857,7 +857,7 @@ namespace CharaBox3
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     tvChara.Nodes.Add(nodeExt);
                     currentSex = -1;
                 }
@@ -876,7 +876,7 @@ namespace CharaBox3
             Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
                         f, new ComparerABC(ref data.chara) }));
             bool bFound = true;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -884,7 +884,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                 }
                 nodeFind.Nodes.Add(j.ToString(), data.chara[j].name[0]);
@@ -896,7 +896,7 @@ namespace CharaBox3
             Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
                         f, new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -904,7 +904,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                 }
                 nodeFind.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
@@ -916,7 +916,7 @@ namespace CharaBox3
             Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
                         f, new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -924,7 +924,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                 }
                 nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[j].name[0]);
@@ -936,7 +936,7 @@ namespace CharaBox3
             Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
                         f, new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -944,7 +944,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                 }
                 nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[j].name[0]);
@@ -956,7 +956,7 @@ namespace CharaBox3
             Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
                         f, new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -964,10 +964,10 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                 }
-                nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "š " + data.chara[j].name[0]);
+                nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "å­— " + data.chara[j].name[0]);
             }
         }
         void LayoutTVFindGame()
@@ -977,7 +977,7 @@ namespace CharaBox3
                         f, new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             string currentGame = null;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v"), nodeGame = null;
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´"), nodeGame = null;
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -985,7 +985,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                     currentGame = null;
                 }
@@ -1005,7 +1005,7 @@ namespace CharaBox3
                         f, new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             int currentSex = -1;
-            TreeNode nodeFind = new TreeNode("ğŒ‚Éˆê’v"), nodeSex = null;
+            TreeNode nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´"), nodeSex = null;
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -1013,7 +1013,7 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                     currentSex = -1;
                 }
@@ -1033,7 +1033,7 @@ namespace CharaBox3
                         f, new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             bool bFound = true;
-            TreeNode nodeExt = null, nodeFind = new TreeNode("ğŒ‚Éˆê’v");
+            TreeNode nodeExt = null, nodeFind = new TreeNode("æ¡ä»¶ã«ä¸€è‡´");
             tvChara.Nodes.Add(nodeFind);
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -1041,14 +1041,14 @@ namespace CharaBox3
                 if (f.match[j] != bFound)
                 {
                     bFound = false;
-                    nodeFind = new TreeNode("ğŒ‚É•sˆê’v");
+                    nodeFind = new TreeNode("æ¡ä»¶ã«ä¸ä¸€è‡´");
                     tvChara.Nodes.Add(nodeFind);
                     currentExt = null;
                 }
                 if (Path.GetExtension(data.chara[j].graphic) != currentExt)
                 {
                     currentExt = Path.GetExtension(data.chara[j].graphic);
-                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "‚È‚µ");
+                    nodeExt = new TreeNode(currentExt != "" ? currentExt : "ãªã—");
                     nodeFind.Nodes.Add(nodeExt);
                 }
                 nodeExt.Nodes.Add(j.ToString(), data.chara[j].name[0]);
@@ -1060,29 +1060,29 @@ namespace CharaBox3
         private void ViewChara(int i)
         {
             CharaData.CharaInfo c = data.chara[i];
-            // –¼‘O
+            // åå‰
             cmbName.Items.Clear();
             foreach (string s1 in c.name) cmbName.Items.Add(s1);
             cmbName.SelectedIndex = 0;
-            // “oêì•i
+            // ç™»å ´ä½œå“
             cmbGame.Items.Clear();
             foreach (string s2 in c.game) cmbGame.Items.Add(s2);
             cmbGame.SelectedIndex = 0;
-            // ‚»‚Ì‘¼‚à‚ë‚à‚ë
+            // ãã®ä»–ã‚‚ã‚ã‚‚ã‚
             cmbInfo.Items.Clear();
-            cmbInfo.Items.Add("" + CharaData.GetSex(c.sex) + (c.age != "" ? "  " + CharaData.GetAgeString(c.age) : "") + (c.size != "" ? "  " + c.size : "") + "  à–¾F" + c.description.Length + "•¶š" + "  XVF" + c.update.ToString());
-            cmbInfo.Items.Add("«•ÊF" + CharaData.GetSex(c.sex));
-            if (c.age != "") cmbInfo.Items.Add("”N—îF" + CharaData.GetAgeString(c.age) + " = " + (CharaData.pqaAge.GetValue(c.age) / 31536000.0).ToString() + "”N");
-            if (c.size != "") cmbInfo.Items.Add("‘å‚«‚³F" + c.size + " = " + CharaData.pqaSize.GetValue(c.size).ToString() + "m");
-            cmbInfo.Items.Add("à–¾‚Ì’·‚³F" + c.description.Length + "•¶š");
-            cmbInfo.Items.Add("ÅIXVF" + c.update.ToString());
+            cmbInfo.Items.Add("" + CharaData.GetSex(c.sex) + (c.age != "" ? "  " + CharaData.GetAgeString(c.age) : "") + (c.size != "" ? "  " + c.size : "") + "  èª¬æ˜ï¼š" + c.description.Length + "æ–‡å­—" + "  æ›´æ–°ï¼š" + c.update.ToString());
+            cmbInfo.Items.Add("æ€§åˆ¥ï¼š" + CharaData.GetSex(c.sex));
+            if (c.age != "") cmbInfo.Items.Add("å¹´é½¢ï¼š" + CharaData.GetAgeString(c.age) + " = " + (CharaData.pqaAge.GetValue(c.age) / 31536000.0).ToString() + "å¹´");
+            if (c.size != "") cmbInfo.Items.Add("å¤§ãã•ï¼š" + c.size + " = " + CharaData.pqaSize.GetValue(c.size).ToString() + "m");
+            cmbInfo.Items.Add("èª¬æ˜ã®é•·ã•ï¼š" + c.description.Length + "æ–‡å­—");
+            cmbInfo.Items.Add("æœ€çµ‚æ›´æ–°ï¼š" + c.update.ToString());
             cmbInfo.SelectedIndex = 0;
-            // à–¾
+            // èª¬æ˜
             txtDescription.Text = c.description;
-            // ‰æ‘œ
+            // ç”»åƒ
             if (ImageAnimator.CanAnimate(picImage.Image))
             {
-                // ƒAƒjƒGIFƒXƒgƒbƒv
+                // ã‚¢ãƒ‹ãƒ¡GIFã‚¹ãƒˆãƒƒãƒ—
                 ImageAnimator.StopAnimate(picImage.Image, new EventHandler(OnFrameChanged));
             }
             Image img;
@@ -1091,7 +1091,7 @@ namespace CharaBox3
                 img = Image.FromFile("bmp/" + c.graphic);
                 if (ImageAnimator.CanAnimate(img))
                 {
-                    // ƒAƒjƒGIFƒXƒ^[ƒg
+                    // ã‚¢ãƒ‹ãƒ¡GIFã‚¹ã‚¿ãƒ¼ãƒˆ
                     ImageAnimator.Animate(img, new EventHandler(OnFrameChanged));
                 }
             }
@@ -1146,7 +1146,7 @@ namespace CharaBox3
             if (files.Length == 0)
             {
                 Array.Resize(ref files, files.Length + 1);
-                files[files.Length - 1].name = "ƒfƒtƒHƒ‹ƒg";
+                files[files.Length - 1].name = "ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ";
                 files[files.Length - 1].file = "default.dat";
                 miMainFile.DropDown.Items.Add(files[files.Length - 1].name, null, new EventHandler(miMainFile_Click));
             }
@@ -1172,11 +1172,11 @@ namespace CharaBox3
             try
             {
                 ViewChara(int.Parse(e.Node.Name));
-                ssLabel.Text = (e.Node.Level > 0 ? e.Node.Parent.Nodes.Count : tvChara.Nodes.Count).ToString() + "€–Ú’†" + (e.Node.Index + 1).ToString() + "”Ô–Ú  ‘S" + data.chara.Length.ToString() + "€–Ú";
+                ssLabel.Text = (e.Node.Level > 0 ? e.Node.Parent.Nodes.Count : tvChara.Nodes.Count).ToString() + "é …ç›®ä¸­" + (e.Node.Index + 1).ToString() + "ç•ªç›®  å…¨" + data.chara.Length.ToString() + "é …ç›®";
             }
             catch (Exception)
             {
-                ssLabel.Text = "q€–Ú" + e.Node.Nodes.Count.ToString() + "ŒÂ  ‘S" + data.chara.Length.ToString() + "€–Ú " + (100.0f * (float)e.Node.Nodes.Count / (float)data.chara.Length).ToString("0.00") + "%";
+                ssLabel.Text = "å­é …ç›®" + e.Node.Nodes.Count.ToString() + "å€‹  å…¨" + data.chara.Length.ToString() + "é …ç›® " + (100.0f * (float)e.Node.Nodes.Count / (float)data.chara.Length).ToString("0.00") + "%";
             }
         }
 
@@ -1227,10 +1227,10 @@ namespace CharaBox3
 
         private void miMainDelete_Click(object sender, EventArgs e)
         {
-            string title = data.chara[data.selected].name[0] + "‚Ìíœ";
-            if (MessageBox.Show("íœ‚µ‚Ä‚æ‚¢‚Ì‚Å‚·‚©H", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
-            if (MessageBox.Show("‚â‚Á‚Ï‚èíœ‚µ‚½‚­‚È‚¢‚Å‚µ‚å‚¤H", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
-            if (MessageBox.Show("‚Å‚ÍAÁ‚µ‚Ü‚·B", title, MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
+            string title = data.chara[data.selected].name[0] + "ã®å‰Šé™¤";
+            if (MessageBox.Show("å‰Šé™¤ã—ã¦ã‚ˆã„ã®ã§ã™ã‹ï¼Ÿ", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
+            if (MessageBox.Show("ã‚„ã£ã±ã‚Šå‰Šé™¤ã—ãŸããªã„ã§ã—ã‚‡ã†ï¼Ÿ", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
+            if (MessageBox.Show("ã§ã¯ã€æ¶ˆã—ã¾ã™ã€‚", title, MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
             ViewChara(data.selected = data.Delete(data.selected));
             RefreshView();
         }
@@ -1288,18 +1288,18 @@ namespace CharaBox3
                 a.CopyTo(c, 0);
                 b.CopyTo(c, a.Length);
                 fe.chara.game = new string[] {
-                    "0¨" + pqa.GetValue("0").ToString(),
-                    "5¨" + pqa.GetValue("5").ToString(),
-                    "5687¨" + pqa.GetValue("5687").ToString(),
-                    "3.1416¨" + pqa.GetValue("3.1416").ToString(),
-                    "3.141592653589793238¨" + pqa.GetValue("3.141592653589793238").ToString(),
-                    "0.0¨" + pqa.GetValue("0.0").ToString(),
-                    "ˆê“ñO¨" + pqa.GetValue("ˆê“ñO").ToString(),
-                    "O\‰~¨" + pqa.GetValue("O\‰~").ToString(),
-                    "\ˆê–œŒÜç‰~¨" + pqa.GetValue("\ˆê–œŒÜç‰~").ToString(),
-                    "‚P‰­‚Q‚R‚S‚T–œ‚U‚V‚W‚X¨" + pqa.GetValue("‚P‰­‚Q‚R‚S‚T–œ‚U‚V‚W‚X").ToString(),
-                    "1.23456–œ‰~¨" + pqa.GetValue("1.23456–œ‰~").ToString(),
-                    "0.0000000000001‰­¨" + pqa.GetValue("0.0000000000001‰­").ToString(),
+                    "0â†’" + pqa.GetValue("0").ToString(),
+                    "5â†’" + pqa.GetValue("5").ToString(),
+                    "5687â†’" + pqa.GetValue("5687").ToString(),
+                    "3.1416â†’" + pqa.GetValue("3.1416").ToString(),
+                    "3.141592653589793238â†’" + pqa.GetValue("3.141592653589793238").ToString(),
+                    "0.0â†’" + pqa.GetValue("0.0").ToString(),
+                    "ä¸€äºŒä¸‰â†’" + pqa.GetValue("ä¸€äºŒä¸‰").ToString(),
+                    "ä¸‰åå††â†’" + pqa.GetValue("ä¸‰åå††").ToString(),
+                    "åä¸€ä¸‡äº”åƒå††â†’" + pqa.GetValue("åä¸€ä¸‡äº”åƒå††").ToString(),
+                    "ï¼‘å„„ï¼’ï¼“ï¼”ï¼•ä¸‡ï¼–ï¼—ï¼˜ï¼™â†’" + pqa.GetValue("ï¼‘å„„ï¼’ï¼“ï¼”ï¼•ä¸‡ï¼–ï¼—ï¼˜ï¼™").ToString(),
+                    "1.23456ä¸‡å††â†’" + pqa.GetValue("1.23456ä¸‡å††").ToString(),
+                    "0.0000000000001å„„â†’" + pqa.GetValue("0.0000000000001å„„").ToString(),
                     new string(c),
                 };
                 fe.ShowDialog(this);
@@ -1374,7 +1374,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.Find) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.Find) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.Find);
         }
         private void miViewFindAge_Click(object sender, EventArgs e)
@@ -1384,7 +1384,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindAge) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindAge) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindAge);
         }
         private void miViewFindSize_Click(object sender, EventArgs e)
@@ -1394,7 +1394,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindSize) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindSize) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindSize);
         }
         private void miViewindUpdate_Click(object sender, EventArgs e)
@@ -1404,7 +1404,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindUpdate) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindUpdate) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindUpdate);
         }
         private void miViewFindDescription_Click(object sender, EventArgs e)
@@ -1414,7 +1414,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindDescription) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindDescription) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindDescription);
         }
         private void miViewFindGame_Click(object sender, EventArgs e)
@@ -1424,7 +1424,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindGame) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindGame) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindGame);
         }
         private void miViewFindSex_Click(object sender, EventArgs e)
@@ -1434,7 +1434,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindSex) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindSex) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindSex);
         }
         private void miViewFindGraphics_Click(object sender, EventArgs e)
@@ -1444,7 +1444,7 @@ namespace CharaBox3
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
-            if (view == ViewMode.FindGraphics) view = ViewMode.None;    // “¯‚¶‚ÌƒNƒŠƒbƒN‚µ‚Ä‚àŒŸõ‚·‚é‚æ[
+            if (view == ViewMode.FindGraphics) view = ViewMode.None;    // åŒã˜ã®ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‚‚æ¤œç´¢ã™ã‚‹ã‚ˆãƒ¼
             ChangeView(ViewMode.FindGraphics);
         }
 
@@ -1465,17 +1465,17 @@ namespace CharaBox3
                 }
                 else
                 {
-                    MessageBox.Show("CharaBox3‚Ìƒtƒ@ƒCƒ‹‚Å‚È‚¢‚½‚ßŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½I");
+                    MessageBox.Show("CharaBox3ã®ãƒ•ã‚¡ã‚¤ãƒ«ã§ãªã„ãŸã‚é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸï¼");
                 }
             }
         }
 
         private void miMainExitNoSave_Click(object sender, EventArgs e)
         {
-            string title = "ƒZ[ƒu‚¹‚¸I—¹";
-            if (MessageBox.Show("ƒZ[ƒu‚¹‚¸I—¹‚µ‚Ä‚æ‚¢‚Ì‚Å‚·‚©H", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
-            if (MessageBox.Show("‚â‚Á‚Ï‚èƒZ[ƒu‚µ‚½‚¢‚Å‚µ‚å‚¤H", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
-            if (MessageBox.Show("‚Å‚ÍAƒZ[ƒu‚¹‚¸I—¹‚µ‚Ü‚·B", title, MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
+            string title = "ã‚»ãƒ¼ãƒ–ã›ãšçµ‚äº†";
+            if (MessageBox.Show("ã‚»ãƒ¼ãƒ–ã›ãšçµ‚äº†ã—ã¦ã‚ˆã„ã®ã§ã™ã‹ï¼Ÿ", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
+            if (MessageBox.Show("ã‚„ã£ã±ã‚Šã‚»ãƒ¼ãƒ–ã—ãŸã„ã§ã—ã‚‡ã†ï¼Ÿ", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
+            if (MessageBox.Show("ã§ã¯ã€ã‚»ãƒ¼ãƒ–ã›ãšçµ‚äº†ã—ã¾ã™ã€‚", title, MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
             save = false;
             Close();
         }

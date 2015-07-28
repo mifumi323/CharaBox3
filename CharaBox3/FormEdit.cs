@@ -22,22 +22,22 @@ namespace CharaBox3
 
         private void txtName_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "‰üs‹æØ‚è‚Å•¡”‚Ì–¼‘O‚ğ“ü—Í‚Å‚«‚Ü‚·B\r\nƒŠƒXƒg‚Éo‚é‚Ì‚ÍÅ‰‚Ì–¼‘O‚¾‚¯‚Å‚·B";
+            txtHint.Text = "æ”¹è¡ŒåŒºåˆ‡ã‚Šã§è¤‡æ•°ã®åå‰ã‚’å…¥åŠ›ã§ãã¾ã™ã€‚\r\nãƒªã‚¹ãƒˆã«å‡ºã‚‹ã®ã¯æœ€åˆã®åå‰ã ã‘ã§ã™ã€‚";
         }
 
         private void txtGame_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "‰üs‹æØ‚è‚Å•¡”‚Ìì•i‚ğ“ü—Í‚Å‚«‚Ü‚·B\r\nƒŠƒXƒg‚Éo‚é‚Ì‚ÍÅ‰‚Ìì•i‚¾‚¯‚Å‚·B";
+            txtHint.Text = "æ”¹è¡ŒåŒºåˆ‡ã‚Šã§è¤‡æ•°ã®ä½œå“ã‚’å…¥åŠ›ã§ãã¾ã™ã€‚\r\nãƒªã‚¹ãƒˆã«å‡ºã‚‹ã®ã¯æœ€åˆã®ä½œå“ã ã‘ã§ã™ã€‚";
         }
 
         private void lstGame_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "ƒ_ƒuƒ‹ƒNƒŠƒbƒN‚Å“oêì•i‚ğ’Ç‰Á‚Å‚«‚Ü‚·B";
+            txtHint.Text = "ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã§ç™»å ´ä½œå“ã‚’è¿½åŠ ã§ãã¾ã™ã€‚";
         }
 
         private void txtDescription_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "à–¾‚ğ‘‚«‚Ü‚·B";
+            txtHint.Text = "èª¬æ˜ã‚’æ›¸ãã¾ã™ã€‚";
         }
 
         private void FormEdit_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace CharaBox3
             {
                 lstGame.Items.Add(game);
             }
-            tvGraphic.Nodes.Add("", "‚È‚µ");
+            tvGraphic.Nodes.Add("", "ãªã—");
             AddDiretory("bmp",tvGraphic.Nodes);
             foreach (CharaData.CharaInfo.Sex s in CharaData.sexes)
             {
@@ -55,7 +55,7 @@ namespace CharaBox3
             tlpOther.RowStyles[0].Height = cmbSex.Height;
             tlpOther.RowStyles[1].Height = txtAge.Height;
             tlpOther.RowStyles[2].Height = txtSize.Height;
-            // ƒf[ƒ^
+            // ãƒ‡ãƒ¼ã‚¿
             if (chara.name != null)
             {
                 foreach (string name in chara.name)
@@ -80,17 +80,17 @@ namespace CharaBox3
 
         private void cmbSex_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "c”O‚È‚ª‚çƒIƒJƒ}‚Æ‚¢‚¤€–Ú‚Í‚²‚´‚¢‚Ü‚¹‚ñB";
+            txtHint.Text = "æ®‹å¿µãªãŒã‚‰ã‚ªã‚«ãƒã¨ã„ã†é …ç›®ã¯ã”ã–ã„ã¾ã›ã‚“ã€‚";
         }
 
         private void txtAge_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "‘ã•\ì•i‚Å‚Ì”N—î‚Å‚·B";
+            txtHint.Text = "ä»£è¡¨ä½œå“ã§ã®å¹´é½¢ã§ã™ã€‚";
         }
 
         private void txtSize_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "‘ã•\ì•i‚Å‚Ì‘å‚«‚³‚Å‚·B\r\n—§‚¿ƒLƒƒƒ‰‚È‚çg’·A”‡‚¢‚Â‚­‚Î‚Á‚Ä‚é‚È‚ç‘Ì’·A‚Ü‚ñŠÛ‚È‚ç’¼ŒaB";
+            txtHint.Text = "ä»£è¡¨ä½œå“ã§ã®å¤§ãã•ã§ã™ã€‚\r\nç«‹ã¡ã‚­ãƒ£ãƒ©ãªã‚‰èº«é•·ã€é€™ã„ã¤ãã°ã£ã¦ã‚‹ãªã‚‰ä½“é•·ã€ã¾ã‚“ä¸¸ãªã‚‰ç›´å¾„ã€‚";
         }
 
         void ShowImage(string file)
@@ -116,7 +116,7 @@ namespace CharaBox3
         private void btnOK_Click(object sender, EventArgs e)
         {
             string[] lines, sep = { "\r\n" };
-            // –¼‘O
+            // åå‰
             lines = txtName.Text.Split(sep, StringSplitOptions.RemoveEmptyEntries);
             if (lines.Length > 0)
             {
@@ -124,10 +124,10 @@ namespace CharaBox3
             }
             else
             {
-                txtHint.Text = "–¼‘O‚Í•K{‚Å‚·B";
+                txtHint.Text = "åå‰ã¯å¿…é ˆã§ã™ã€‚";
                 return;
             }
-            // “oêì•i
+            // ç™»å ´ä½œå“
             lines = txtGame.Text.Split(sep, StringSplitOptions.RemoveEmptyEntries);
             if (lines.Length > 0)
             {
@@ -135,22 +135,22 @@ namespace CharaBox3
             }
             else
             {
-                txtHint.Text = "“oêì•i‚Í•K{‚Å‚·B";
+                txtHint.Text = "ç™»å ´ä½œå“ã¯å¿…é ˆã§ã™ã€‚";
                 return;
             }
-            // à–¾
+            // èª¬æ˜
             chara.description = txtDescription.Text;
-            // ‰æ‘œ
+            // ç”»åƒ
             chara.graphic = tvGraphic.SelectedNode.Name;
-            // «•Ê
+            // æ€§åˆ¥
             chara.sex = CharaData.GetSex(cmbSex.Text);
-            // ”N—î
+            // å¹´é½¢
             chara.age = txtAge.Text;
-            // ‘å‚«‚³
+            // å¤§ãã•
             chara.size = txtSize.Text;
-            // XV“ú
+            // æ›´æ–°æ—¥
             chara.update = DateTime.Now;
-            // I—¹
+            // çµ‚äº†
             Canceled = false;
             Close();
         }
@@ -177,7 +177,7 @@ namespace CharaBox3
 
         private void tvGraphic_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "‚±‚±‚©‚ç‰æ‘œ‚ğ‘I‚Ñ‚Ü‚·B";
+            txtHint.Text = "ã“ã“ã‹ã‚‰ç”»åƒã‚’é¸ã³ã¾ã™ã€‚";
         }
 
         void AddDiretory(string dir, TreeNodeCollection nodes)
@@ -199,7 +199,7 @@ namespace CharaBox3
                 foreach (string file in System.IO.Directory.GetFiles(dir, "*", System.IO.SearchOption.TopDirectoryOnly))
                 {
                     TreeNode node = new TreeNode(System.IO.Path.GetFileName(file));
-                    node.Name = file.Remove(0, 4);  // Å‰‚Ì"bmp\"‚ğæ‚èœ‚­
+                    node.Name = file.Remove(0, 4);  // æœ€åˆã®"bmp\"ã‚’å–ã‚Šé™¤ã
                     nodes.Add(node);
                 }
             }
