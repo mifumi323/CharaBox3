@@ -85,12 +85,6 @@
     <Compile Include="FormFind.Designer.cs">
       <DependentUpon>FormFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOption.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormOption.Designer.cs">
-      <DependentUpon>FormOption.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -104,10 +98,6 @@
     <EmbeddedResource Include="FormFind.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FormFind.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormOption.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FormOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

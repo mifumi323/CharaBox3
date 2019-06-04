@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CharaBox3
@@ -47,8 +43,8 @@ namespace CharaBox3
                 lstGame.Items.Add(game);
             }
             tvGraphic.Nodes.Add("", "なし");
-            AddDiretory("bmp",tvGraphic.Nodes);
-            foreach (CharaData.CharaInfo.Sex s in CharaData.sexes)
+            AddDiretory("bmp", tvGraphic.Nodes);
+            foreach (var s in CharaData.sexes)
             {
                 cmbSex.Items.Add(CharaData.GetSex(s));
             }
@@ -198,8 +194,10 @@ namespace CharaBox3
             {
                 foreach (string file in System.IO.Directory.GetFiles(dir, "*", System.IO.SearchOption.TopDirectoryOnly))
                 {
-                    TreeNode node = new TreeNode(System.IO.Path.GetFileName(file));
-                    node.Name = file.Remove(0, 4);  // 最初の"bmp\"を取り除く
+                    var node = new TreeNode(System.IO.Path.GetFileName(file))
+                    {
+                        Name = file.Remove(0, 4)  // 最初の"bmp\"を取り除く
+                    };
                     nodes.Add(node);
                 }
             }

@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using MifuminLib;
 
 namespace CharaBox3
@@ -10,7 +7,7 @@ namespace CharaBox3
     /// <summary>キャラデータを管理しているクラス。</summary>
     public class CharaData
     {
-        string fileName;
+        private readonly string fileName;
 
         public struct CharaInfo
         {
@@ -133,8 +130,8 @@ namespace CharaBox3
             }
         }
 
-        static public PhysicalQuantityAnalyzer pqaAge = new PhysicalQuantityAnalyzer(PhysicalQuantityAnalyzer.Word.def, PhysicalQuantityAnalyzer.Word.time);
-        static public PhysicalQuantityAnalyzer pqaSize = new PhysicalQuantityAnalyzer(PhysicalQuantityAnalyzer.Word.def, PhysicalQuantityAnalyzer.Word.len);
+        public static PhysicalQuantityAnalyzer pqaAge = new PhysicalQuantityAnalyzer(PhysicalQuantityAnalyzer.Word.def, PhysicalQuantityAnalyzer.Word.time);
+        public static PhysicalQuantityAnalyzer pqaSize = new PhysicalQuantityAnalyzer(PhysicalQuantityAnalyzer.Word.def, PhysicalQuantityAnalyzer.Word.len);
 
         public static CharaInfo.Sex[] sexes = new CharaInfo.Sex[]{
             CharaInfo.Sex.Unknown,
@@ -269,7 +266,7 @@ namespace CharaBox3
             }
         }
 
-        static public string GetSex(CharaInfo.Sex sex)
+        public static string GetSex(CharaInfo.Sex sex)
         {
             return
                 sex == CharaInfo.Sex.Unknown ? "不明" :
@@ -281,7 +278,7 @@ namespace CharaBox3
                 "不明";
         }
 
-        static public CharaInfo.Sex GetSex(string sex)
+        public static CharaInfo.Sex GetSex(string sex)
         {
             return
                 sex == "不明" ? CharaInfo.Sex.Unknown :
@@ -308,12 +305,7 @@ namespace CharaBox3
             return Math.Min(index, chara.Length - 1);
         }
 
-        static public float GetSize(string size)
-        {
-            return 0.0f;
-        }
-
-        static public string GetAgeString(string age)
+        public static string GetAgeString(string age)
         {
             if (age.Length < 8) return age;
             try

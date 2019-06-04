@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using MifuminLib;
 
@@ -61,7 +57,7 @@ namespace CharaBox3
         ViewMode view = ViewMode.None;
         int[] sortedList = new int[0];
 
-        struct DataFiles { public string name, file;}
+        struct DataFiles { public string name, file; }
         DataFiles[] files = new DataFiles[0];
 
         CharaData.FindCondition find;
@@ -72,32 +68,32 @@ namespace CharaBox3
 
         #region Compare
 
-        static StringComparer scomp = StringComparer.Create(System.Globalization.CultureInfo.GetCultureInfo(0x0011), true);
+        private static readonly StringComparer scomp = StringComparer.Create(System.Globalization.CultureInfo.GetCultureInfo(0x0011), true);
         public class ComparerABC : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerABC(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
-            { return Form1.scomp.Compare(chara[(int)x].name[0], chara[(int)y].name[0]); }
+            int System.Collections.IComparer.Compare(object x, object y)
+            { return scomp.Compare(chara[(int)x].name[0], chara[(int)y].name[0]); }
         }
         public class ComparerGame : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerGame(ref CharaData.CharaInfo[] c) { chara = c; }
             int System.Collections.IComparer.Compare(Object x, Object y)
-            { return Form1.scomp.Compare(chara[(int)x].game[0], chara[(int)y].game[0]); }
+            { return scomp.Compare(chara[(int)x].game[0], chara[(int)y].game[0]); }
         }
         public class ComparerSex : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerSex(ref CharaData.CharaInfo[] c) { chara = c; }
             int System.Collections.IComparer.Compare(Object x, Object y)
             { return (int)chara[(int)x].sex - (int)chara[(int)y].sex; }
         }
         public class ComparerAge : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
-            double[] age;
+            readonly CharaData.CharaInfo[] chara;
+            readonly double[] age;
             public ComparerAge(ref CharaData.CharaInfo[] c)
             {
                 chara = c;
@@ -112,8 +108,8 @@ namespace CharaBox3
         }
         public class ComparerSize : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
-            double[] size;
+            readonly CharaData.CharaInfo[] chara;
+            readonly double[] size;
             public ComparerSize(ref CharaData.CharaInfo[] c)
             {
                 chara = c;
@@ -128,28 +124,28 @@ namespace CharaBox3
         }
         public class ComparerUpdate : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerUpdate(ref CharaData.CharaInfo[] c) { chara = c; }
             int System.Collections.IComparer.Compare(Object x, Object y)
             { return chara[(int)y].update.CompareTo(chara[(int)x].update); }
         }
         public class ComparerDescription : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerDescription(ref CharaData.CharaInfo[] c) { chara = c; }
             int System.Collections.IComparer.Compare(Object x, Object y)
             { return chara[(int)y].description.Length - chara[(int)x].description.Length; }
         }
         public class ComparerGraphics : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public ComparerGraphics(ref CharaData.CharaInfo[] c) { chara = c; }
             int System.Collections.IComparer.Compare(Object x, Object y)
-            { return Form1.scomp.Compare(Path.GetExtension(chara[(int)x].graphic), Path.GetExtension(chara[(int)y].graphic)); }
+            { return scomp.Compare(Path.GetExtension(chara[(int)x].graphic), Path.GetExtension(chara[(int)y].graphic)); }
         }
         public class ComparerFind : System.Collections.IComparer
         {
-            CharaData.CharaInfo[] chara;
+            readonly CharaData.CharaInfo[] chara;
             public bool[] match;
             public ComparerFind(ref CharaData.CharaInfo[] c, CharaData.FindCondition f)
             {
@@ -170,12 +166,12 @@ namespace CharaBox3
         }
         public class ComparerMulti : System.Collections.IComparer
         {
-            System.Collections.IComparer[] comparers;
+            readonly System.Collections.IComparer[] comparers;
             public ComparerMulti(System.Collections.IComparer[] comparers) { this.comparers = comparers; }
             int System.Collections.IComparer.Compare(Object x, Object y)
             {
                 int ret = 0;
-                foreach (System.Collections.IComparer comparer in comparers)
+                foreach (var comparer in comparers)
                 {
                     ret = comparer.Compare(x, y);
                     if (ret != 0) break;
@@ -1198,8 +1194,10 @@ namespace CharaBox3
         private void miMainEdit_Click(object sender, EventArgs e)
         {
             if (data.selected >= data.chara.Length) return;
-            FormEdit fe = new FormEdit();
-            fe.chara = data.chara[data.selected];
+            var fe = new FormEdit
+            {
+                chara = data.chara[data.selected]
+            };
             fe.SetGames(data.chara);
             fe.ShowDialog(this);
             if (!fe.Canceled)
@@ -1369,8 +1367,10 @@ namespace CharaBox3
         { ChangeView(ViewMode.SexGraphics); }
         private void miViewFindABC_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1379,8 +1379,10 @@ namespace CharaBox3
         }
         private void miViewFindAge_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1389,8 +1391,10 @@ namespace CharaBox3
         }
         private void miViewFindSize_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1399,8 +1403,10 @@ namespace CharaBox3
         }
         private void miViewindUpdate_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1409,8 +1415,10 @@ namespace CharaBox3
         }
         private void miViewFindDescription_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1419,8 +1427,10 @@ namespace CharaBox3
         }
         private void miViewFindGame_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1429,8 +1439,10 @@ namespace CharaBox3
         }
         private void miViewFindSex_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1439,8 +1451,10 @@ namespace CharaBox3
         }
         private void miViewFindGraphics_Click(object sender, EventArgs e)
         {
-            FormFind f = new FormFind();
-            f.find = find;
+            var f = new FormFind
+            {
+                find = find
+            };
             f.ShowDialog(this);
             if (!f.isOK) return;
             find = f.find;
@@ -1456,7 +1470,7 @@ namespace CharaBox3
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
                 Directory.SetCurrentDirectory(cd);
-                CharaData d= new CharaData(ofdFile.FileName);
+                CharaData d = new CharaData(ofdFile.FileName);
                 if (d.Load())
                 {
                     data.Save();

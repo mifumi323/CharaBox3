@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace MifuminLib
 {
@@ -88,76 +86,77 @@ namespace MifuminLib
             };
             // 長さ（メートル基準）
             public static Word[] len = {
-                new Word("ピコメートル", Word.Meaning.Unit, 1e-12),     new Word("ピコ", Word.Meaning.Unit, 1e-12),
-                new Word("ナノメートル", Word.Meaning.Unit, 1e-9),      new Word("ナノ", Word.Meaning.Unit, 1e-9),
-                new Word("マイクロメートル", Word.Meaning.Unit, 1e-6),  new Word("マイクロ", Word.Meaning.Unit, 1e-6),
-                new Word("ミリメートル", Word.Meaning.Unit, 1e-3),      new Word("ミリ", Word.Meaning.Unit, 1e-3),
-                new Word("センチメートル", Word.Meaning.Unit, 1e-2),    new Word("センチ", Word.Meaning.Unit, 1e-2),
-                new Word("メートル", Word.Meaning.Unit, 1e0),
-                new Word("キロメートル", Word.Meaning.Unit, 1e3),       new Word("キロ", Word.Meaning.Unit, 1e3),
-                new Word("メガメートル", Word.Meaning.Unit, 1e6),       new Word("メガ", Word.Meaning.Unit, 1e6),
-                new Word("pm", Word.Meaning.Unit, 1e-12),   new Word("ｐｍ", Word.Meaning.Unit, 1e-12),
-                new Word("nm", Word.Meaning.Unit, 1e-9),    new Word("ｎｍ", Word.Meaning.Unit, 1e-9),
-                new Word("um", Word.Meaning.Unit, 1e-6),    new Word("ｕｍ", Word.Meaning.Unit, 1e-6),
-                new Word("mm", Word.Meaning.Unit, 1e-3),    new Word("ｍｍ", Word.Meaning.Unit, 1e-3),
-                new Word("cm", Word.Meaning.Unit, 1e-2),    new Word("ｃｍ", Word.Meaning.Unit, 1e-2),
-                new Word("m", Word.Meaning.Unit, 1e-0),     new Word("ｍ", Word.Meaning.Unit, 1e-0),
-                new Word("km", Word.Meaning.Unit, 1e3),     new Word("ｋｍ", Word.Meaning.Unit, 1e3),
-                new Word("Mm", Word.Meaning.Unit, 1e6),     new Word("Ｍｍ", Word.Meaning.Unit, 1e6),
-                new Word("メーター", Word.Meaning.Unit, 1e-0),
-                new Word("ミクロン", Word.Meaning.Unit, 1e-6),
-                new Word("μ", Word.Meaning.Unit, 1e-6),
-                new Word("μm", Word.Meaning.Unit, 1e-6),
-                new Word("μｍ", Word.Meaning.Unit, 1e-6),
-                new Word("天文単位", Word.Meaning.Unit, 1.496e11),
-                new Word("光年", Word.Meaning.Unit, 9.46e15),
-                new Word("パーセク", Word.Meaning.Unit, 30.86e15),
-                new Word("オングストローム", Word.Meaning.Unit, 1e-10),     new Word("Å", Word.Meaning.Unit, 1e-10),
-                new Word("バーレイコーン", Word.Meaning.Unit, 0.008467),    new Word("barleycorn", Word.Meaning.Unit, 0.008467),
-                new Word("インチ", Word.Meaning.Unit, 0.0254),              new Word("inch", Word.Meaning.Unit, 0.0254),
-                new Word("フィート", Word.Meaning.Unit, 0.3048),            new Word("feet", Word.Meaning.Unit, 0.3048),
-                new Word("ヤード", Word.Meaning.Unit, 0.9144),              new Word("yard", Word.Meaning.Unit, 0.9144),
-                new Word("ポール", Word.Meaning.Unit, 5.0292),              new Word("pole", Word.Meaning.Unit, 5.0292),
-                new Word("チェーン", Word.Meaning.Unit, 20.1168),           new Word("chain", Word.Meaning.Unit, 20.1168),
-                new Word("ハロン", Word.Meaning.Unit, 201.168),             new Word("furlong", Word.Meaning.Unit, 201.168),
-                new Word("マイル", Word.Meaning.Unit, 1609.344),            new Word("mile", Word.Meaning.Unit, 1609.344),
-                new Word("リーグ", Word.Meaning.Unit, 4828.032),            new Word("league", Word.Meaning.Unit, 4828.032),
-                new Word("in", Word.Meaning.Unit, 0.0254),
-                new Word("ft", Word.Meaning.Unit, 0.3048),
-                new Word("yd", Word.Meaning.Unit, 0.9144),
-                new Word("foot", Word.Meaning.Unit, 0.3048),
-                new Word("里", Word.Meaning.Unit, 3926.88),
-                new Word("町", Word.Meaning.Unit, 109.08),
-                new Word("間", Word.Meaning.Unit, 1.818),
-                new Word("丈", Word.Meaning.Unit, 3.03),
-                new Word("尺", Word.Meaning.Unit, 0.303),
-                new Word("寸", Word.Meaning.Unit, 0.0303),
+                new Word("ピコメートル", Meaning.Unit, 1e-12),     new Word("ピコ", Meaning.Unit, 1e-12),
+                new Word("ナノメートル", Meaning.Unit, 1e-9),      new Word("ナノ", Meaning.Unit, 1e-9),
+                new Word("マイクロメートル", Meaning.Unit, 1e-6),  new Word("マイクロ", Meaning.Unit, 1e-6),
+                new Word("ミリメートル", Meaning.Unit, 1e-3),      new Word("ミリ", Meaning.Unit, 1e-3),
+                new Word("センチメートル", Meaning.Unit, 1e-2),    new Word("センチ", Meaning.Unit, 1e-2),
+                new Word("メートル", Meaning.Unit, 1e0),
+                new Word("キロメートル", Meaning.Unit, 1e3),       new Word("キロ", Meaning.Unit, 1e3),
+                new Word("メガメートル", Meaning.Unit, 1e6),       new Word("メガ", Meaning.Unit, 1e6),
+                new Word("pm", Meaning.Unit, 1e-12),   new Word("ｐｍ", Meaning.Unit, 1e-12),
+                new Word("nm", Meaning.Unit, 1e-9),    new Word("ｎｍ", Meaning.Unit, 1e-9),
+                new Word("um", Meaning.Unit, 1e-6),    new Word("ｕｍ", Meaning.Unit, 1e-6),
+                new Word("mm", Meaning.Unit, 1e-3),    new Word("ｍｍ", Meaning.Unit, 1e-3),
+                new Word("cm", Meaning.Unit, 1e-2),    new Word("ｃｍ", Meaning.Unit, 1e-2),
+                new Word("m", Meaning.Unit, 1e-0),     new Word("ｍ", Meaning.Unit, 1e-0),
+                new Word("km", Meaning.Unit, 1e3),     new Word("ｋｍ", Meaning.Unit, 1e3),
+                new Word("Mm", Meaning.Unit, 1e6),     new Word("Ｍｍ", Meaning.Unit, 1e6),
+                new Word("メーター", Meaning.Unit, 1e-0),
+                new Word("ミクロン", Meaning.Unit, 1e-6),
+                new Word("μ", Meaning.Unit, 1e-6),
+                new Word("μm", Meaning.Unit, 1e-6),
+                new Word("μｍ", Meaning.Unit, 1e-6),
+                new Word("天文単位", Meaning.Unit, 1.496e11),
+                new Word("光年", Meaning.Unit, 9.46e15),
+                new Word("パーセク", Meaning.Unit, 30.86e15),
+                new Word("オングストローム", Meaning.Unit, 1e-10),     new Word("Å", Meaning.Unit, 1e-10),
+                new Word("バーレイコーン", Meaning.Unit, 0.008467),    new Word("barleycorn", Meaning.Unit, 0.008467),
+                new Word("インチ", Meaning.Unit, 0.0254),              new Word("inch", Meaning.Unit, 0.0254),
+                new Word("フィート", Meaning.Unit, 0.3048),            new Word("feet", Meaning.Unit, 0.3048),
+                new Word("ヤード", Meaning.Unit, 0.9144),              new Word("yard", Meaning.Unit, 0.9144),
+                new Word("ポール", Meaning.Unit, 5.0292),              new Word("pole", Meaning.Unit, 5.0292),
+                new Word("チェーン", Meaning.Unit, 20.1168),           new Word("chain", Meaning.Unit, 20.1168),
+                new Word("ハロン", Meaning.Unit, 201.168),             new Word("furlong", Meaning.Unit, 201.168),
+                new Word("マイル", Meaning.Unit, 1609.344),            new Word("mile", Meaning.Unit, 1609.344),
+                new Word("リーグ", Meaning.Unit, 4828.032),            new Word("league", Meaning.Unit, 4828.032),
+                new Word("in", Meaning.Unit, 0.0254),
+                new Word("ft", Meaning.Unit, 0.3048),
+                new Word("yd", Meaning.Unit, 0.9144),
+                new Word("foot", Meaning.Unit, 0.3048),
+                new Word("里", Meaning.Unit, 3926.88),
+                new Word("町", Meaning.Unit, 109.08),
+                new Word("間", Meaning.Unit, 1.818),
+                new Word("丈", Meaning.Unit, 3.03),
+                new Word("尺", Meaning.Unit, 0.303),
+                new Word("寸", Meaning.Unit, 0.0303),
             };
             // 時間（年齢）
             public static Word[] time = {
-                new Word("秒", Word.Meaning.Unit, 1.0),
-                new Word("分", Word.Meaning.Unit, 60.0),
-                new Word("時間", Word.Meaning.Unit, 3600.0),
-                new Word("日", Word.Meaning.Unit, 86400.0),
-                new Word("週", Word.Meaning.Unit, 604800.0),
-                new Word("月", Word.Meaning.Unit, 2592000.0),
-                new Word("年", Word.Meaning.Unit, 31536000.0),
-                new Word("歳", Word.Meaning.Unit, 31536000.0),      new Word("才", Word.Meaning.Unit, 31536000.0),
-                new Word("世紀", Word.Meaning.Unit, 3153600000.0),
-                new Word("ミリ秒", Word.Meaning.Unit, 1.0e-3),
-                new Word("m秒", Word.Meaning.Unit, 1.0e-3),         new Word("ｍ秒", Word.Meaning.Unit, 1.0e-3),
-                new Word("マイクロ秒", Word.Meaning.Unit, 1.0e-6),
-                new Word("μ秒", Word.Meaning.Unit, 1.0e-6),
-                new Word("u秒", Word.Meaning.Unit, 1.0e-6),         new Word("ｕ秒", Word.Meaning.Unit, 1.0e-6),
-                new Word("ナノ秒", Word.Meaning.Unit, 1.0e-9),
-                new Word("n秒", Word.Meaning.Unit, 1.0e-9),         new Word("ｎ秒", Word.Meaning.Unit, 1.0e-9),
-                new Word("ピコ秒", Word.Meaning.Unit, 1.0e-12),
-                new Word("p秒", Word.Meaning.Unit, 1.0e-12),        new Word("ｐ秒", Word.Meaning.Unit, 1.0e-12),
+                new Word("秒", Meaning.Unit, 1.0),
+                new Word("分", Meaning.Unit, 60.0),
+                new Word("時間", Meaning.Unit, 3600.0),
+                new Word("日", Meaning.Unit, 86400.0),
+                new Word("週", Meaning.Unit, 604800.0),
+                new Word("月", Meaning.Unit, 2592000.0),
+                new Word("年", Meaning.Unit, 31536000.0),
+                new Word("歳", Meaning.Unit, 31536000.0),      new Word("才", Meaning.Unit, 31536000.0),
+                new Word("世紀", Meaning.Unit, 3153600000.0),
+                new Word("ミリ秒", Meaning.Unit, 1.0e-3),
+                new Word("m秒", Meaning.Unit, 1.0e-3),         new Word("ｍ秒", Meaning.Unit, 1.0e-3),
+                new Word("マイクロ秒", Meaning.Unit, 1.0e-6),
+                new Word("μ秒", Meaning.Unit, 1.0e-6),
+                new Word("u秒", Meaning.Unit, 1.0e-6),         new Word("ｕ秒", Meaning.Unit, 1.0e-6),
+                new Word("ナノ秒", Meaning.Unit, 1.0e-9),
+                new Word("n秒", Meaning.Unit, 1.0e-9),         new Word("ｎ秒", Meaning.Unit, 1.0e-9),
+                new Word("ピコ秒", Meaning.Unit, 1.0e-12),
+                new Word("p秒", Meaning.Unit, 1.0e-12),        new Word("ｐ秒", Meaning.Unit, 1.0e-12),
                 // これはちょっと特別。
-                new Word("代", Word.Meaning.Unit, 31536000.000001),
+                new Word("代", Meaning.Unit, 31536000.000001),
             };
         };
-        Word[] dic;
+
+        private readonly Word[] dic;
 
         /// <summary>
         /// Word構造体の並べ替え基準
@@ -197,21 +196,21 @@ namespace MifuminLib
             Array.Sort(dic, new WordComparer());
         }
 
-/*        public UnitNumberConverter(Word[] pairs)
-        {
-            dic = pairs;
-            // 長さについて降順に並べる
-            Array.Sort(dic, new WordComparer());
-        }
+        /*        public UnitNumberConverter(Word[] pairs)
+                {
+                    dic = pairs;
+                    // 長さについて降順に並べる
+                    Array.Sort(dic, new WordComparer());
+                }
 
-        public UnitNumberConverter(Word[] pairs1, Word[] pairs2)
-        {
-            dic = new Word[pairs1.Length + pairs2.Length];
-            pairs1.CopyTo(dic, 0);
-            pairs2.CopyTo(dic, pairs1.Length);
-            // 長さについて降順に並べる
-            Array.Sort(dic, new WordComparer());
-        }*/
+                public UnitNumberConverter(Word[] pairs1, Word[] pairs2)
+                {
+                    dic = new Word[pairs1.Length + pairs2.Length];
+                    pairs1.CopyTo(dic, 0);
+                    pairs2.CopyTo(dic, pairs1.Length);
+                    // 長さについて降順に並べる
+                    Array.Sort(dic, new WordComparer());
+                }*/
 
         /// <summary>
         /// 文字列を基本単位で表した数値に変換します

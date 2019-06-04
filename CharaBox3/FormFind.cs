@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
 
 namespace CharaBox3
@@ -20,7 +15,7 @@ namespace CharaBox3
 
         private void FormFind_Load(object sender, EventArgs e)
         {
-            foreach (CharaData.CharaInfo.Sex s in CharaData.sexes)
+            foreach (var s in CharaData.sexes)
             {
                 cmbSex.Items.Add(CharaData.GetSex(s));
             }
@@ -72,12 +67,12 @@ namespace CharaBox3
             find.name = txtName.Text;
             find.game = txtGame.Text;
             find.description = txtDescription.Text;
-            find.graphic=txtGraphics.Text;
-            find.sex=(CharaData.CharaInfo.Sex)cmbSex.SelectedIndex;
-            find.agemin=txtAgeMin.Text;
-            find.agemax=txtAgeMax.Text;
-            find.sizemin=txtSizeMin.Text;
-            find.sizemax=txtSizeMax.Text;
+            find.graphic = txtGraphics.Text;
+            find.sex = (CharaData.CharaInfo.Sex)cmbSex.SelectedIndex;
+            find.agemin = txtAgeMin.Text;
+            find.agemax = txtAgeMax.Text;
+            find.sizemin = txtSizeMin.Text;
+            find.sizemax = txtSizeMax.Text;
             find.namematch = chkName.Checked && cmbName.SelectedIndex == 0;
             find.namecontain = chkName.Checked && cmbName.SelectedIndex == 1;
             find.namenotcontain = chkName.Checked && cmbName.SelectedIndex == 2;
