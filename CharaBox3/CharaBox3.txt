@@ -18,7 +18,7 @@ CharaBox3
 できますし、実在の人物をデータとして入れても良いでしょう。
 
 ●動作環境
-.NET 4.5.2が動く環境
+.NET 4.7.2が動く環境
 以下の環境で動作確認済みです。
 Windows 10
 
@@ -63,12 +63,12 @@ bmp          ：画像を入れるフォルダ。各自作成してください。
 このあたりに融通を利かすのが今後の課題となります。
 
 ・.NETがなくて起動できません！
-「Windows Update」で「Microsoft .NET Framework 4.5.2」を
+「Windows Update」で「Microsoft .NET Framework 4.7.2」を
 インストールしましょう。それでも無理ならもう知りません。
 
-・.NET 4.5.2がインストールできません！
+・.NET 4.7.2がインストールできません！
 XPちゃんはもうゆっくりおやすみ。
-Vistaならサービスパック適用でどうにかなるはずです。
+7ならWindows Updateでどうにかなるはずです。
 
 ●履歴
 1.0.5 動作環境変更。10でそのまま動くように。XPはサヨナラ
@@ -80,4 +80,4 @@ Vistaならサービスパック適用でどうにかなるはずです。
 
 ●連絡先
 Mail:mifumi323@tgws.fromc.jp
-URL :http://tgws.fromc.jp/
+URL :https://tgws.plus/
