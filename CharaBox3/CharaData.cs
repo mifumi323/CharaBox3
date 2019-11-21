@@ -7,7 +7,7 @@ namespace CharaBox3
     /// <summary>キャラデータを管理しているクラス。</summary>
     public class CharaData
     {
-        private readonly string fileName;
+        public readonly string fileName;
 
         public struct CharaInfo
         {

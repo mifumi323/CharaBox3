@@ -1494,5 +1494,20 @@ namespace CharaBox3
             Close();
         }
 
+        private void exportAsJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using var sfd = new SaveFileDialog()
+            {
+                DefaultExt = "json",
+                FileName = Path.GetFileNameWithoutExtension(data.fileName) + ".json",
+                Filter = "JSON形式|*.json|その他|*.*",
+                Title = "JSON形式でエクスポート",
+            };
+            if (sfd.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+            File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(data.chara));
+        }
     }
 }
