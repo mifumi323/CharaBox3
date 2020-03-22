@@ -151,72 +151,70 @@ namespace CharaBox3
         {
             try
             {
-                using (StreamReader sr = new StreamReader(fileName))
+                using StreamReader sr = new StreamReader(fileName);
+                String line, buf;
+                int i, j;
+                bool isValid = false;
+                i = 0;
+                line = "End";
+                chara = new CharaInfo[1];
+                do
                 {
-                    String line, buf;
-                    int i, j;
-                    bool isValid = false;
-                    i = 0;
-                    line = "End";
-                    chara = new CharaInfo[1];
-                    do
+                    switch (line)
                     {
-                        switch (line)
-                        {
-                            case "CharaBox3":
-                                isValid = true;
-                                break;
-                            case "Selected":
-                                selected = int.Parse(sr.ReadLine());
-                                break;
-                            case "Name":
-                                j = 0;
-                                while ((buf = sr.ReadLine()) != "")
-                                {
-                                    Array.Resize(ref chara[i - 1].name, j + 1);
-                                    chara[i - 1].name[j] = buf;
-                                    j++;
-                                }
-                                break;
-                            case "Game":
-                                j = 0;
-                                while ((buf = sr.ReadLine()) != "")
-                                {
-                                    Array.Resize(ref chara[i - 1].game, j + 1);
-                                    chara[i - 1].game[j] = buf;
-                                    j++;
-                                }
-                                break;
-                            case "Graphic":
-                                chara[i - 1].graphic = sr.ReadLine();
-                                break;
-                            case "Sex":
-                                chara[i - 1].sex = GetSex(sr.ReadLine());
-                                break;
-                            case "Age":
-                                chara[i - 1].age = sr.ReadLine();
-                                break;
-                            case "Size":
-                                chara[i - 1].size = sr.ReadLine();
-                                break;
-                            case "Description":
-                                chara[i - 1].description = sr.ReadLine().Replace("\\n", "\r\n");
-                                break;
-                            case "Update":
-                                chara[i - 1].update = new DateTime(long.Parse(sr.ReadLine()));
-                                break;
-                            case "End":
-                                i++;
-                                if (i > chara.Length) Array.Resize(ref chara, chara.Length * 2);
-                                chara[i - 1].name = new string[0];
-                                chara[i - 1].game = new string[0];
-                                break;
-                            default: break;
-                        }
-                    } while ((line = sr.ReadLine()) != null);
-                    Array.Resize(ref chara, i - 1);
-                    return isValid;
-                }
+                        case "CharaBox3":
+                            isValid = true;
+                            break;
+                        case "Selected":
+                            selected = int.Parse(sr.ReadLine());
+                            break;
+                        case "Name":
+                            j = 0;
+                            while ((buf = sr.ReadLine()) != "")
+                            {
+                                Array.Resize(ref chara[i - 1].name, j + 1);
+                                chara[i - 1].name[j] = buf;
+                                j++;
+                            }
+                            break;
+                        case "Game":
+                            j = 0;
+                            while ((buf = sr.ReadLine()) != "")
+                            {
+                                Array.Resize(ref chara[i - 1].game, j + 1);
+                                chara[i - 1].game[j] = buf;
+                                j++;
+                            }
+                            break;
+                        case "Graphic":
+                            chara[i - 1].graphic = sr.ReadLine();
+                            break;
+                        case "Sex":
+                            chara[i - 1].sex = GetSex(sr.ReadLine());
+                            break;
+                        case "Age":
+                            chara[i - 1].age = sr.ReadLine();
+                            break;
+                        case "Size":
+                            chara[i - 1].size = sr.ReadLine();
+                            break;
+                        case "Description":
+                            chara[i - 1].description = sr.ReadLine().Replace("\\n", "\r\n");
+                            break;
+                        case "Update":
+                            chara[i - 1].update = new DateTime(long.Parse(sr.ReadLine()));
+                            break;
+                        case "End":
+                            i++;
+                            if (i > chara.Length) Array.Resize(ref chara, chara.Length * 2);
+                            chara[i - 1].name = new string[0];
+                            chara[i - 1].game = new string[0];
+                            break;
+                        default: break;
+                    }
+                } while ((line = sr.ReadLine()) != null);
+                Array.Resize(ref chara, i - 1);
+                return isValid;
             }
             catch (FileNotFoundException)
             {
@@ -230,39 +228,37 @@ namespace CharaBox3
 
         public void Save()
         {
-            using (StreamWriter sw = new StreamWriter(fileName))
+            using StreamWriter sw = new StreamWriter(fileName);
+            sw.WriteLine("CharaBox3");
+            sw.WriteLine("Selected");
+            sw.WriteLine(selected);
+            foreach (CharaInfo c in chara)
             {
-                sw.WriteLine("CharaBox3");
-                sw.WriteLine("Selected");
-                sw.WriteLine(selected);
-                foreach (CharaInfo c in chara)
+                sw.WriteLine("Name");
+                foreach (string name in c.name)
                 {
-                    sw.WriteLine("Name");
-                    foreach (string name in c.name)
-                    {
-                        sw.WriteLine(name);
-                    }
-                    sw.WriteLine();
-                    sw.WriteLine("Game");
-                    foreach (string game in c.game)
-                    {
-                        sw.WriteLine(game);
-                    }
-                    sw.WriteLine();
-                    sw.WriteLine("Graphic");
-                    sw.WriteLine(c.graphic);
-                    sw.WriteLine("Sex");
-                    sw.WriteLine(GetSex(c.sex));
-                    sw.WriteLine("Age");
-                    sw.WriteLine(c.age);
-                    sw.WriteLine("Size");
-                    sw.WriteLine(c.size);
-                    sw.WriteLine("Description");
-                    sw.WriteLine(c.description.Replace("\r\n", "\\n").Replace("\r", "\\n").Replace("\n", "\\n"));
-                    sw.WriteLine("Update");
-                    sw.WriteLine(c.update.Ticks);
-                    sw.WriteLine("End");
+                    sw.WriteLine(name);
                 }
+                sw.WriteLine();
+                sw.WriteLine("Game");
+                foreach (string game in c.game)
+                {
+                    sw.WriteLine(game);
+                }
+                sw.WriteLine();
+                sw.WriteLine("Graphic");
+                sw.WriteLine(c.graphic);
+                sw.WriteLine("Sex");
+                sw.WriteLine(GetSex(c.sex));
+                sw.WriteLine("Age");
+                sw.WriteLine(c.age);
+                sw.WriteLine("Size");
+                sw.WriteLine(c.size);
+                sw.WriteLine("Description");
+                sw.WriteLine(c.description.Replace("\r\n", "\\n").Replace("\r", "\\n").Replace("\n", "\\n"));
+                sw.WriteLine("Update");
+                sw.WriteLine(c.update.Ticks);
+                sw.WriteLine("End");
             }
         }
 

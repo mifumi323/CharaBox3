@@ -1102,39 +1102,37 @@ namespace CharaBox3
             sizesaver = new WindowSizeSaver(this);
             try
             {
-                using (StreamReader sr = new StreamReader("CharaBox3.ini"))
+                using StreamReader sr = new StreamReader("CharaBox3.ini");
+                string line;
+                string[] item;
+                char[] sep = new char[] { '\t' };
+                FormWindowState state = FormWindowState.Normal;
+                while ((line = sr.ReadLine()) != null)
                 {
-                    string line;
-                    string[] item;
-                    char[] sep = new char[] { '\t' };
-                    FormWindowState state = FormWindowState.Normal;
-                    while ((line = sr.ReadLine()) != null)
+                    item = line.Split(sep);
+                    switch (item[0])
                     {
-                        item = line.Split(sep);
-                        switch (item[0])
-                        {
-                            case "File":
-                                Array.Resize(ref files, files.Length + 1);
-                                files[files.Length - 1].name = item[1];
-                                files[files.Length - 1].file = item[2];
-                                miMainFile.DropDown.Items.Add(item[1], null, new EventHandler(miMainFile_Click));
-                                break;
-                            case "Location":
-                                this.Left = int.Parse(item[1]);
-                                this.Top = int.Parse(item[2]);
-                                break;
-                            case "Size":
-                                this.Width = int.Parse(item[1]);
-                                this.Height = int.Parse(item[2]);
-                                break;
-                            case "State":
-                                state = (FormWindowState)int.Parse(item[1]);
-                                break;
-                            default: break;
-                        }
+                        case "File":
+                            Array.Resize(ref files, files.Length + 1);
+                            files[files.Length - 1].name = item[1];
+                            files[files.Length - 1].file = item[2];
+                            miMainFile.DropDown.Items.Add(item[1], null, new EventHandler(miMainFile_Click));
+                            break;
+                        case "Location":
+                            this.Left = int.Parse(item[1]);
+                            this.Top = int.Parse(item[2]);
+                            break;
+                        case "Size":
+                            this.Width = int.Parse(item[1]);
+                            this.Height = int.Parse(item[2]);
+                            break;
+                        case "State":
+                            state = (FormWindowState)int.Parse(item[1]);
+                            break;
+                        default: break;
                     }
-                    this.WindowState = state;
                 }
+                this.WindowState = state;
             }
             catch (Exception)
             {
@@ -1248,16 +1246,14 @@ namespace CharaBox3
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (save) data.Save();
-            using (StreamWriter sw = new StreamWriter("CharaBox3.ini"))
+            using StreamWriter sw = new StreamWriter("CharaBox3.ini");
+            foreach (DataFiles f in files)
             {
-                foreach (DataFiles f in files)
-                {
-                    sw.WriteLine("File\t" + f.name + "\t" + f.file);
-                }
-                sw.WriteLine("Location\t" + sizesaver.Location.X.ToString() + "\t" + sizesaver.Location.Y.ToString());
-                sw.WriteLine("Size\t" + sizesaver.Size.Width.ToString() + "\t" + sizesaver.Size.Height.ToString());
-                sw.WriteLine("State\t" + ((int)sizesaver.WindowState).ToString());
+                sw.WriteLine("File\t" + f.name + "\t" + f.file);
             }
+            sw.WriteLine("Location\t" + sizesaver.Location.X.ToString() + "\t" + sizesaver.Location.Y.ToString());
+            sw.WriteLine("Size\t" + sizesaver.Size.Width.ToString() + "\t" + sizesaver.Size.Height.ToString());
+            sw.WriteLine("State\t" + ((int)sizesaver.WindowState).ToString());
         }
 
         private void miMainFile_Click(object sender, EventArgs e)
