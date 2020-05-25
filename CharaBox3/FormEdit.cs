@@ -173,7 +173,7 @@ namespace CharaBox3
 
         private void tvGraphic_Enter(object sender, EventArgs e)
         {
-            txtHint.Text = "ここから画像を選びます。";
+            txtHint.Text = "ここから画像を選びます。\r\nドラッグ＆ドロップで画像を取り込むこともできます。";
         }
 
         void AddDiretory(string dir, TreeNodeCollection nodes)
@@ -244,6 +244,28 @@ namespace CharaBox3
         private void lstGame_DoubleClick(object sender, EventArgs e)
         {
             txtGame.Text += lstGame.SelectedItem + "\r\n";
+        }
+
+        private void tvGraphic_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+                txtHint.Text = "今開いているフォルダに画像を取り込みます。";
+            }
+        }
+
+        private void tvGraphic_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                ImportGraphics((string[])e.Data.GetData(DataFormats.FileDrop));
+            }
+        }
+
+        private void ImportGraphics(string[] files)
+        {
+            throw new NotImplementedException();
         }
     }
 }
