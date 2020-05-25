@@ -58,11 +58,13 @@
             this.tabEdit.SuspendLayout();
             this.tpName.SuspendLayout();
             this.tpGame.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tpDescription.SuspendLayout();
             this.tpGraphic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -132,10 +134,10 @@
             // tpName
             // 
             this.tpName.Controls.Add(this.txtName);
-            this.tpName.Location = new System.Drawing.Point(4, 21);
+            this.tpName.Location = new System.Drawing.Point(4, 22);
             this.tpName.Name = "tpName";
             this.tpName.Padding = new System.Windows.Forms.Padding(3);
-            this.tpName.Size = new System.Drawing.Size(518, 293);
+            this.tpName.Size = new System.Drawing.Size(518, 292);
             this.tpName.TabIndex = 0;
             this.tpName.Text = "名前";
             this.tpName.UseVisualStyleBackColor = true;
@@ -147,17 +149,17 @@
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtName.Size = new System.Drawing.Size(512, 287);
+            this.txtName.Size = new System.Drawing.Size(512, 286);
             this.txtName.TabIndex = 3;
             this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             // 
             // tpGame
             // 
             this.tpGame.Controls.Add(this.splitContainer1);
-            this.tpGame.Location = new System.Drawing.Point(4, 21);
+            this.tpGame.Location = new System.Drawing.Point(4, 22);
             this.tpGame.Name = "tpGame";
             this.tpGame.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGame.Size = new System.Drawing.Size(518, 293);
+            this.tpGame.Size = new System.Drawing.Size(518, 292);
             this.tpGame.TabIndex = 1;
             this.tpGame.Text = "登場作品";
             this.tpGame.UseVisualStyleBackColor = true;
@@ -175,7 +177,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lstGame);
-            this.splitContainer1.Size = new System.Drawing.Size(512, 287);
+            this.splitContainer1.Size = new System.Drawing.Size(512, 286);
             this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -186,7 +188,7 @@
             this.txtGame.Multiline = true;
             this.txtGame.Name = "txtGame";
             this.txtGame.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGame.Size = new System.Drawing.Size(281, 287);
+            this.txtGame.Size = new System.Drawing.Size(281, 286);
             this.txtGame.TabIndex = 5;
             this.txtGame.Enter += new System.EventHandler(this.txtGame_Enter);
             // 
@@ -197,7 +199,7 @@
             this.lstGame.ItemHeight = 12;
             this.lstGame.Location = new System.Drawing.Point(0, 0);
             this.lstGame.Name = "lstGame";
-            this.lstGame.Size = new System.Drawing.Size(227, 280);
+            this.lstGame.Size = new System.Drawing.Size(227, 286);
             this.lstGame.TabIndex = 0;
             this.lstGame.DoubleClick += new System.EventHandler(this.lstGame_DoubleClick);
             this.lstGame.Enter += new System.EventHandler(this.lstGame_Enter);
@@ -205,9 +207,9 @@
             // tpDescription
             // 
             this.tpDescription.Controls.Add(this.txtDescription);
-            this.tpDescription.Location = new System.Drawing.Point(4, 21);
+            this.tpDescription.Location = new System.Drawing.Point(4, 22);
             this.tpDescription.Name = "tpDescription";
-            this.tpDescription.Size = new System.Drawing.Size(518, 293);
+            this.tpDescription.Size = new System.Drawing.Size(518, 292);
             this.tpDescription.TabIndex = 0;
             this.tpDescription.Text = "説明";
             this.tpDescription.UseVisualStyleBackColor = true;
@@ -221,17 +223,17 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(518, 293);
+            this.txtDescription.Size = new System.Drawing.Size(518, 292);
             this.txtDescription.TabIndex = 6;
             this.txtDescription.Enter += new System.EventHandler(this.txtDescription_Enter);
             // 
             // tpGraphic
             // 
             this.tpGraphic.Controls.Add(this.splitContainer2);
-            this.tpGraphic.Location = new System.Drawing.Point(4, 21);
+            this.tpGraphic.Location = new System.Drawing.Point(4, 22);
             this.tpGraphic.Name = "tpGraphic";
             this.tpGraphic.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGraphic.Size = new System.Drawing.Size(518, 293);
+            this.tpGraphic.Size = new System.Drawing.Size(518, 292);
             this.tpGraphic.TabIndex = 2;
             this.tpGraphic.Text = "画像";
             this.tpGraphic.UseVisualStyleBackColor = true;
@@ -249,7 +251,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.picGraphic);
-            this.splitContainer2.Size = new System.Drawing.Size(512, 287);
+            this.splitContainer2.Size = new System.Drawing.Size(512, 286);
             this.splitContainer2.SplitterDistance = 170;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -258,28 +260,32 @@
             this.tvGraphic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvGraphic.Location = new System.Drawing.Point(0, 0);
             this.tvGraphic.Name = "tvGraphic";
-            this.tvGraphic.Size = new System.Drawing.Size(170, 287);
+            this.tvGraphic.Size = new System.Drawing.Size(170, 286);
             this.tvGraphic.TabIndex = 0;
-            this.tvGraphic.Enter += new System.EventHandler(this.tvGraphic_Enter);
             this.tvGraphic.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvGraphic_AfterSelect);
+            this.tvGraphic.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvGraphic_DragDrop);
+            this.tvGraphic.DragEnter += new System.Windows.Forms.DragEventHandler(this.tvGraphic_DragEnter);
+            this.tvGraphic.Enter += new System.EventHandler(this.tvGraphic_Enter);
             // 
             // picGraphic
             // 
             this.picGraphic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picGraphic.Location = new System.Drawing.Point(0, 0);
             this.picGraphic.Name = "picGraphic";
-            this.picGraphic.Size = new System.Drawing.Size(338, 287);
+            this.picGraphic.Size = new System.Drawing.Size(338, 286);
             this.picGraphic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picGraphic.TabIndex = 2;
             this.picGraphic.TabStop = false;
+            this.picGraphic.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvGraphic_DragDrop);
+            this.picGraphic.DragEnter += new System.Windows.Forms.DragEventHandler(this.tvGraphic_DragEnter);
             this.picGraphic.Resize += new System.EventHandler(this.picGraphic_Resize);
             // 
             // tpOther
             // 
             this.tpOther.Controls.Add(this.tlpOther);
-            this.tpOther.Location = new System.Drawing.Point(4, 21);
+            this.tpOther.Location = new System.Drawing.Point(4, 22);
             this.tpOther.Name = "tpOther";
-            this.tpOther.Size = new System.Drawing.Size(518, 293);
+            this.tpOther.Size = new System.Drawing.Size(518, 292);
             this.tpOther.TabIndex = 0;
             this.tpOther.Text = "その他";
             this.tpOther.UseVisualStyleBackColor = true;
@@ -303,7 +309,7 @@
             this.tlpOther.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tlpOther.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tlpOther.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpOther.Size = new System.Drawing.Size(518, 293);
+            this.tlpOther.Size = new System.Drawing.Size(518, 292);
             this.tlpOther.TabIndex = 2;
             // 
             // txtSize
@@ -389,12 +395,14 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tpDescription.ResumeLayout(false);
             this.tpDescription.PerformLayout();
             this.tpGraphic.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picGraphic)).EndInit();
             this.tpOther.ResumeLayout(false);
