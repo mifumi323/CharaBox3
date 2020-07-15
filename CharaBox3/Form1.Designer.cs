@@ -536,7 +536,6 @@
             this.ssBottom.Size = new System.Drawing.Size(457, 22);
             this.ssBottom.TabIndex = 7;
             this.ssBottom.Text = "statusStrip1";
-            this.ssBottom.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ssBottom_MouseDoubleClick);
             // 
             // ssLabel
             // 
