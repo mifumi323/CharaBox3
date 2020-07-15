@@ -1270,43 +1270,6 @@ namespace CharaBox3
             }
         }
 
-        private void ssBottom_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-            {
-                FormEdit fe = new FormEdit();
-                PhysicalQuantityAnalyzer pqa = new PhysicalQuantityAnalyzer(PhysicalQuantityAnalyzer.Word.def);
-                fe.SetGames(data.chara);
-                char[] a = "abcd".ToCharArray(), b = "efgh".ToCharArray();
-                char[] c = new char[a.Length + b.Length];
-                a.CopyTo(c, 0);
-                b.CopyTo(c, a.Length);
-                fe.chara.game = new string[] {
-                    "0→" + pqa.GetValue("0").ToString(),
-                    "5→" + pqa.GetValue("5").ToString(),
-                    "5687→" + pqa.GetValue("5687").ToString(),
-                    "3.1416→" + pqa.GetValue("3.1416").ToString(),
-                    "3.141592653589793238→" + pqa.GetValue("3.141592653589793238").ToString(),
-                    "0.0→" + pqa.GetValue("0.0").ToString(),
-                    "一二三→" + pqa.GetValue("一二三").ToString(),
-                    "三十円→" + pqa.GetValue("三十円").ToString(),
-                    "十一万五千円→" + pqa.GetValue("十一万五千円").ToString(),
-                    "１億２３４５万６７８９→" + pqa.GetValue("１億２３４５万６７８９").ToString(),
-                    "1.23456万円→" + pqa.GetValue("1.23456万円").ToString(),
-                    "0.0000000000001億→" + pqa.GetValue("0.0000000000001億").ToString(),
-                    new string(c),
-                };
-                fe.ShowDialog(this);
-                if (!fe.Canceled)
-                {
-                    data.Save();
-                    data = new CharaData(fe.chara.name[0]);
-                    data.Load();
-                    RefreshView();
-                }
-            }
-        }
-
         #region miView
 
         private void miViewABC_Click(object sender, EventArgs e)
