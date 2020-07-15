@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CharaBox3
@@ -42,7 +45,11 @@ namespace CharaBox3
             {
                 lstGame.Items.Add(game);
             }
-            tvGraphic.Nodes.Add("", "なし");
+            tvGraphic.Nodes.Add(new TreeNode("なし")
+            {
+                Name = "",
+                Tag = "bmp",
+            });
             AddDiretory("bmp", tvGraphic.Nodes);
             foreach (var s in CharaData.sexes)
             {
@@ -180,9 +187,12 @@ namespace CharaBox3
         {
             try
             {
-                foreach (string subdir in System.IO.Directory.GetDirectories(dir, "*", System.IO.SearchOption.TopDirectoryOnly))
+                foreach (string subdir in Directory.GetDirectories(dir, "*", System.IO.SearchOption.TopDirectoryOnly))
                 {
-                    TreeNode node = new TreeNode(System.IO.Path.GetFileName(subdir));
+                    TreeNode node = new TreeNode(System.IO.Path.GetFileName(subdir))
+                    {
+                        Tag = subdir,
+                    };
                     AddDiretory(subdir, node.Nodes);
                     nodes.Add(node);
                 }
@@ -194,9 +204,10 @@ namespace CharaBox3
             {
                 foreach (string file in System.IO.Directory.GetFiles(dir, "*", System.IO.SearchOption.TopDirectoryOnly))
                 {
-                    var node = new TreeNode(System.IO.Path.GetFileName(file))
+                    var node = new TreeNode(Path.GetFileName(file))
                     {
-                        Name = file.Remove(0, 4)  // 最初の"bmp\"を取り除く
+                        Name = file.Remove(0, 4), // 最初の"bmp\"を取り除く
+                        Tag = dir,
                     };
                     nodes.Add(node);
                 }
@@ -265,7 +276,42 @@ namespace CharaBox3
 
         private void ImportGraphics(string[] files)
         {
-            throw new NotImplementedException();
+            var selected = tvGraphic.SelectedNode;
+            var dir = selected.Tag as string;
+            var parent = string.IsNullOrEmpty(selected.Name) ?
+                (selected.Text == "なし" ? tvGraphic.Nodes : selected.Nodes) :
+                (selected.Parent == null ? tvGraphic.Nodes : selected.Parent.Nodes);
+            var nodes = new List<TreeNode>(files.Length);
+            foreach (var file in files)
+            {
+                try
+                {
+                    var filename = Path.GetFileName(file);
+                    var destpath = Path.Combine(dir, filename);
+                    if (File.Exists(destpath))
+                    {
+                        continue;
+                    }
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                    File.Copy(file, destpath);
+                    nodes.Add(new TreeNode(filename)
+                    {
+                        Tag = dir,
+                        Name = destpath.Remove(0, 4), // 最初の"bmp\"を取り除く
+                    });
+                }
+                catch
+                {
+                }
+            }
+            if (nodes.Any())
+            {
+                parent.AddRange(nodes.ToArray());
+                tvGraphic.SelectedNode = nodes.First();
+            }
         }
     }
 }

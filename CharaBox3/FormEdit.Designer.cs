@@ -257,6 +257,7 @@
             // 
             // tvGraphic
             // 
+            this.tvGraphic.AllowDrop = true;
             this.tvGraphic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvGraphic.Location = new System.Drawing.Point(0, 0);
             this.tvGraphic.Name = "tvGraphic";
