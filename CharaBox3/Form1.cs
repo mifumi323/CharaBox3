@@ -1083,7 +1083,7 @@ namespace CharaBox3
                             Array.Resize(ref files, files.Length + 1);
                             files[files.Length - 1].name = item[1];
                             files[files.Length - 1].file = item[2];
-                            miMainFile.DropDown.Items.Add(item[1], null, new EventHandler(miMainFile_Click));
+                            miFileSelect.DropDown.Items.Add(item[1], null, new EventHandler(miFileSelect_Click));
                             break;
                         case "Location":
                             Left = int.Parse(item[1]);
@@ -1112,7 +1112,7 @@ namespace CharaBox3
                 Array.Resize(ref files, files.Length + 1);
                 files[files.Length - 1].name = "デフォルト";
                 files[files.Length - 1].file = "default.dat";
-                miMainFile.DropDown.Items.Add(files[files.Length - 1].name, null, new EventHandler(miMainFile_Click));
+                miFileSelect.DropDown.Items.Add(files[files.Length - 1].name, null, new EventHandler(miFileSelect_Click));
             }
             data = new CharaData(files[0].file);
             imgDefault = picImage.Image;
@@ -1154,7 +1154,7 @@ namespace CharaBox3
             LayoutInfo();
         }
 
-        private void miMainEdit_Click(object sender, EventArgs e)
+        private void miItemEdit_Click(object sender, EventArgs e)
         {
             if (data.selected >= data.chara.Length) return;
             var fe = new FormEdit
@@ -1176,17 +1176,17 @@ namespace CharaBox3
             LayoutInfo();
         }
 
-        private void miMainRandom_Click(object sender, EventArgs e)
+        private void miItemRandom_Click(object sender, EventArgs e)
         {
             tvChara.SelectedNode = tvChara.Nodes.Find(new Random().Next(data.chara.Length).ToString(), true)[0];
         }
 
-        private void miMainExit_Click(object sender, EventArgs e)
+        private void miFileExit_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void miMainDelete_Click(object sender, EventArgs e)
+        private void miItemDelete_Click(object sender, EventArgs e)
         {
             var title = $"{data.chara[data.selected].name[0]}の削除";
             if (MessageBox.Show("削除してよいのですか？", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
@@ -1196,7 +1196,7 @@ namespace CharaBox3
             RefreshView();
         }
 
-        private void miMainAdd_Click(object sender, EventArgs e)
+        private void miItemAdd_Click(object sender, EventArgs e)
         {
             FormEdit fe = new FormEdit();
             fe.SetGames(data.chara);
@@ -1222,7 +1222,7 @@ namespace CharaBox3
             sw.WriteLine($"ViewMode\t{(int)view}");
         }
 
-        private void miMainFile_Click(object sender, EventArgs e)
+        private void miFileSelect_Click(object sender, EventArgs e)
         {
             foreach (DataFiles f in files)
             {
@@ -1389,7 +1389,7 @@ namespace CharaBox3
 
         #endregion
 
-        private void miMainOpen_Click(object sender, EventArgs e)
+        private void miFileOpen_Click(object sender, EventArgs e)
         {
             var cd = Directory.GetCurrentDirectory();
             if (ofdFile.ShowDialog() == DialogResult.OK)
@@ -1409,7 +1409,7 @@ namespace CharaBox3
             }
         }
 
-        private void miMainExitNoSave_Click(object sender, EventArgs e)
+        private void miFileExitNoSave_Click(object sender, EventArgs e)
         {
             string title = "セーブせず終了";
             if (MessageBox.Show("セーブせず終了してよいのですか？", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
@@ -1419,7 +1419,7 @@ namespace CharaBox3
             Close();
         }
 
-        private void exportAsJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void miFileExportAsJson_Click(object sender, EventArgs e)
         {
             using var sfd = new SaveFileDialog()
             {
