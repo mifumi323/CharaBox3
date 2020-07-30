@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+            System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,14 +37,12 @@
             this.miFileOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExportAsJson = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.miFileExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.miItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miItemEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.miItemAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.miItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.miItemRandom = new System.Windows.Forms.ToolStripMenuItem();
             this.miView = new System.Windows.Forms.ToolStripMenuItem();
             this.miViewABC = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +99,8 @@
             this.pnlImage = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
+            toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.msMain.SuspendLayout();
             this.ssBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
@@ -130,7 +132,7 @@
             this.miFileSelect,
             this.miFileOpen,
             this.miFileExport,
-            this.toolStripMenuItem2,
+            toolStripMenuItem2,
             this.miFileExitNoSave,
             this.miFileExit});
             this.miFile.Name = "miFile";
@@ -167,8 +169,8 @@
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 6);
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new System.Drawing.Size(184, 6);
             // 
             // miFileExitNoSave
             // 
@@ -190,7 +192,7 @@
             this.miItemEdit,
             this.miItemAdd,
             this.miItemDelete,
-            this.toolStripMenuItem1,
+            toolStripMenuItem1,
             this.miItemRandom});
             this.miItem.Name = "miItem";
             this.miItem.Size = new System.Drawing.Size(54, 20);
@@ -222,8 +224,8 @@
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
             // 
             // miItemRandom
             // 
@@ -743,7 +745,6 @@
         private System.Windows.Forms.ToolStripMenuItem miFile;
         private System.Windows.Forms.ToolStripMenuItem miItemAdd;
         private System.Windows.Forms.ToolStripMenuItem miItemDelete;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem miFileExit;
         private System.Windows.Forms.ToolStripMenuItem miItemRandom;
         private System.Windows.Forms.ToolStripMenuItem miView;
@@ -808,7 +809,6 @@
         private System.Windows.Forms.ToolStripMenuItem miFileExportAsJson;
         private System.Windows.Forms.ToolStripMenuItem miItem;
         private System.Windows.Forms.ToolStripMenuItem miItemEdit;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 
