@@ -1067,6 +1067,7 @@ namespace CharaBox3
         private void Form1_Load(object sender, EventArgs e)
         {
             sizesaver = new WindowSizeSaver(this);
+            var viewMode = ViewMode.ABC;
             try
             {
                 using StreamReader sr = new StreamReader("CharaBox3.ini");
@@ -1095,6 +1096,9 @@ namespace CharaBox3
                         case "State":
                             state = (FormWindowState)int.Parse(item[1]);
                             break;
+                        case "ViewMode":
+                            viewMode = (ViewMode)int.Parse(item[1]);
+                            break;
                         default: break;
                     }
                 }
@@ -1118,7 +1122,7 @@ namespace CharaBox3
             lblInfo.Top = cmbInfo.Top = cmbName.Height * 2;
             lblGame.Width = lblInfo.Width = cmbName.Left = cmbGame.Left = cmbInfo.Left = lblName.Width;
             data.Load();
-            ChangeView(ViewMode.ABC);
+            ChangeView(viewMode);
             LayoutInfo();
         }
 
@@ -1215,6 +1219,7 @@ namespace CharaBox3
             sw.WriteLine($"Location\t{sizesaver.Location.X}\t{sizesaver.Location.Y}");
             sw.WriteLine($"Size\t{sizesaver.Size.Width}\t{sizesaver.Size.Height}");
             sw.WriteLine($"State\t{(int)sizesaver.WindowState}");
+            sw.WriteLine($"ViewMode\t{(int)view}");
         }
 
         private void miMainFile_Click(object sender, EventArgs e)
