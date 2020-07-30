@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using MifuminLib;
@@ -68,29 +70,29 @@ namespace CharaBox3
 
         #region Compare
 
-        private static readonly StringComparer scomp = StringComparer.Create(System.Globalization.CultureInfo.GetCultureInfo(0x0011), true);
-        public class ComparerABC : System.Collections.IComparer
+        private static readonly StringComparer scomp = StringComparer.Create(CultureInfo.GetCultureInfo(0x0011), true);
+        public class ComparerABC : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerABC(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(object x, object y)
+            int IComparer.Compare(object x, object y)
             { return scomp.Compare(chara[(int)x].name[0], chara[(int)y].name[0]); }
         }
-        public class ComparerGame : System.Collections.IComparer
+        public class ComparerGame : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerGame(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return scomp.Compare(chara[(int)x].game[0], chara[(int)y].game[0]); }
         }
-        public class ComparerSex : System.Collections.IComparer
+        public class ComparerSex : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerSex(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return (int)chara[(int)x].sex - (int)chara[(int)y].sex; }
         }
-        public class ComparerAge : System.Collections.IComparer
+        public class ComparerAge : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             readonly double[] age;
@@ -103,10 +105,10 @@ namespace CharaBox3
                     age[i] = chara[i].age != "" ? CharaData.pqaAge.GetValue(CharaData.GetAgeString(chara[i].age)) : -1;
                 }
             }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return Math.Sign(age[(int)y] - age[(int)x]); }
         }
-        public class ComparerSize : System.Collections.IComparer
+        public class ComparerSize : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             readonly double[] size;
@@ -119,31 +121,31 @@ namespace CharaBox3
                     size[i] = chara[i].size != "" ? CharaData.pqaSize.GetValue(chara[i].size) : -1;
                 }
             }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return Math.Sign(size[(int)y] - size[(int)x]); }
         }
-        public class ComparerUpdate : System.Collections.IComparer
+        public class ComparerUpdate : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerUpdate(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return chara[(int)y].update.CompareTo(chara[(int)x].update); }
         }
-        public class ComparerDescription : System.Collections.IComparer
+        public class ComparerDescription : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerDescription(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return chara[(int)y].description.Length - chara[(int)x].description.Length; }
         }
-        public class ComparerGraphics : System.Collections.IComparer
+        public class ComparerGraphics : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public ComparerGraphics(ref CharaData.CharaInfo[] c) { chara = c; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             { return scomp.Compare(Path.GetExtension(chara[(int)x].graphic), Path.GetExtension(chara[(int)y].graphic)); }
         }
-        public class ComparerFind : System.Collections.IComparer
+        public class ComparerFind : IComparer
         {
             readonly CharaData.CharaInfo[] chara;
             public bool[] match;
@@ -153,22 +155,22 @@ namespace CharaBox3
                 match = new bool[chara.Length];
                 for (int i = 0; i < chara.Length; i++) match[i] = f.Match(chara[i]);
             }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            int IComparer.Compare(object x, object y)
             {
                 if (match[(int)x] == match[(int)y]) return 0;
                 if (match[(int)y] == true) return 1;
                 return -1;
             }
         }
-        public class ComparerNone : System.Collections.IComparer
+        public class ComparerNone : IComparer
         {
-            int System.Collections.IComparer.Compare(Object x, Object y) { return 0; }
+            int IComparer.Compare(object x, object y) { return 0; }
         }
-        public class ComparerMulti : System.Collections.IComparer
+        public class ComparerMulti : IComparer
         {
-            readonly System.Collections.IComparer[] comparers;
-            public ComparerMulti(System.Collections.IComparer[] comparers) { this.comparers = comparers; }
-            int System.Collections.IComparer.Compare(Object x, Object y)
+            readonly IComparer[] comparers;
+            public ComparerMulti(IComparer[] comparers) { this.comparers = comparers; }
+            int IComparer.Compare(object x, object y)
             {
                 int ret = 0;
                 foreach (var comparer in comparers)
@@ -193,9 +195,7 @@ namespace CharaBox3
                 int wlim = scMain.Panel2.Width;
                 int hlim = scMain.Panel2.Height;
                 int wmax = wlim / 3;
-                int hmax = //Math.Max(
-                    hlim / 3//, hlim - txtDescription.PreferredHeight - txtDescription.Top)
-                    ;
+                int hmax = hlim / 3;
                 int w = picImage.Image.Width + padx;
                 int h = picImage.Image.Height + pady;
                 if (h <= hmax)
@@ -375,12 +375,12 @@ namespace CharaBox3
         {
             // カテゴリ
             string[] catABC = {
-                        "あ","い","う","え","お", "か","き","く","け","こ",
-                        "さ","し","す","せ","そ", "た","ち","つ","て","と",
-                        "な","に","ぬ","ね","の", "は","ひ","ふ","へ","ほ",
-                        "ま","み","む","め","も", "や",     "ゆ",     "よ",
-                        "ら","り","る","れ","ろ", "わ","ゐ",
-                    };
+                "あ","い","う","え","お", "か","き","く","け","こ",
+                "さ","し","す","せ","そ", "た","ち","つ","て","と",
+                "な","に","ぬ","ね","の", "は","ひ","ふ","へ","ほ",
+                "ま","み","む","め","も", "や",     "ゆ",     "よ",
+                "ら","り","る","れ","ろ", "わ","ゐ",
+            };
             tvChara.Nodes.Add("ABC", "アルファベット・記号");
             for (int i = 0; i < catABC.Length - 1; i++)
             {
@@ -389,7 +389,7 @@ namespace CharaBox3
             tvChara.Nodes.Add("ゐ", "漢字・その他");
             // データ
             Array.Sort(sortedList, new ComparerABC(ref data.chara));
-            TreeNode nodeABC = tvChara.Nodes.Find("ABC", false)[0];
+            var nodeABC = tvChara.Nodes.Find("ABC", false)[0];
             int j = 0;
             for (int i = 0; i < data.chara.Length; i++)
             {
@@ -408,44 +408,39 @@ namespace CharaBox3
         }
         void LayoutTVAge()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             for (int i = 0; i < data.chara.Length; i++)
             {
-                tvChara.Nodes.Add(sortedList[i].ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
+                tvChara.Nodes.Add(sortedList[i].ToString(), $"{CharaData.GetAgeString(data.chara[sortedList[i]].age)} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVSize()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             for (int i = 0; i < data.chara.Length; i++)
             {
-                tvChara.Nodes.Add(sortedList[i].ToString(), data.chara[sortedList[i]].size + " " + data.chara[sortedList[i]].name[0]);
+                tvChara.Nodes.Add(sortedList[i].ToString(), $"{data.chara[sortedList[i]].size} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVUpdate()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             for (int i = 0; i < data.chara.Length; i++)
             {
-                tvChara.Nodes.Add(sortedList[i].ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[sortedList[i]].name[0]);
+                tvChara.Nodes.Add(sortedList[i].ToString(), $"{data.chara[sortedList[i]].update:yyyy/MM/dd HH:mm:ss} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVDescription()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             for (int i = 0; i < data.chara.Length; i++)
             {
-                tvChara.Nodes.Add(sortedList[i].ToString(), data.chara[sortedList[i]].description.Length.ToString() + "字 " + data.chara[sortedList[i]].name[0]);
+                tvChara.Nodes.Add(sortedList[i].ToString(), $"{data.chara[sortedList[i]].description.Length}字 {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVGame()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             TreeNode nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -462,8 +457,7 @@ namespace CharaBox3
         }
         void LayoutTVGameAge()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             TreeNode nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -475,13 +469,12 @@ namespace CharaBox3
                     nodeGame = new TreeNode(currentGame);
                     tvChara.Nodes.Add(nodeGame);
                 }
-                nodeGame.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
+                nodeGame.Nodes.Add(j.ToString(), $"{CharaData.GetAgeString(data.chara[sortedList[i]].age)} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVGameSize()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             TreeNode nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -493,13 +486,12 @@ namespace CharaBox3
                     nodeGame = new TreeNode(currentGame);
                     tvChara.Nodes.Add(nodeGame);
                 }
-                nodeGame.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[sortedList[i]].name[0]);
+                nodeGame.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].size} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVGameUpdate()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             TreeNode nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -511,13 +503,12 @@ namespace CharaBox3
                     nodeGame = new TreeNode(currentGame);
                     tvChara.Nodes.Add(nodeGame);
                 }
-                nodeGame.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[sortedList[i]].name[0]);
+                nodeGame.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].update:yyyy/MM/dd HH:mm:ss} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVGameDescription()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             TreeNode nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -529,13 +520,12 @@ namespace CharaBox3
                     nodeGame = new TreeNode(currentGame);
                     tvChara.Nodes.Add(nodeGame);
                 }
-                nodeGame.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "字 " + data.chara[j].name[0]);
+                nodeGame.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].description.Length}字 {data.chara[j].name[0]}");
             }
         }
         void LayoutTVGameSex()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null;
             int currentSex = -1;
             TreeNode nodeGame = null, nodeSex = null;
@@ -560,8 +550,7 @@ namespace CharaBox3
         }
         void LayoutTVGameGraphics()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGame(ref data.chara), new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGame(ref data.chara), new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentGame = null, currentExt = null;
             TreeNode nodeGame = null, nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -585,8 +574,7 @@ namespace CharaBox3
         }
         void LayoutTVSex()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             TreeNode nodeSex = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -603,8 +591,7 @@ namespace CharaBox3
         }
         void LayoutTVSexAge()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             TreeNode nodeSex = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -616,13 +603,12 @@ namespace CharaBox3
                     nodeSex = new TreeNode(CharaData.GetSex(data.chara[j].sex));
                     tvChara.Nodes.Add(nodeSex);
                 }
-                nodeSex.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[j].name[0]);
+                nodeSex.Nodes.Add(j.ToString(), $"{CharaData.GetAgeString(data.chara[sortedList[i]].age)} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVSexSize()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             TreeNode nodeSex = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -634,13 +620,12 @@ namespace CharaBox3
                     nodeSex = new TreeNode(CharaData.GetSex(data.chara[j].sex));
                     tvChara.Nodes.Add(nodeSex);
                 }
-                nodeSex.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[j].name[0]);
+                nodeSex.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].size} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVSexUpdate()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             TreeNode nodeSex = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -652,13 +637,12 @@ namespace CharaBox3
                     nodeSex = new TreeNode(CharaData.GetSex(data.chara[j].sex));
                     tvChara.Nodes.Add(nodeSex);
                 }
-                nodeSex.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[j].name[0]);
+                nodeSex.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].update:yyyy/MM/dd HH:mm:ss} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVSexDescription()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             TreeNode nodeSex = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -670,13 +654,12 @@ namespace CharaBox3
                     nodeSex = new TreeNode(CharaData.GetSex(data.chara[j].sex));
                     tvChara.Nodes.Add(nodeSex);
                 }
-                nodeSex.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "字 " + data.chara[j].name[0]);
+                nodeSex.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].description.Length}字 {data.chara[j].name[0]}");
             }
         }
         void LayoutTVSexGame()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             string currentGame = null;
             TreeNode nodeSex = null, nodeGame = null;
@@ -701,8 +684,7 @@ namespace CharaBox3
         }
         void LayoutTVSexGraphics()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerSex(ref data.chara), new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerSex(ref data.chara), new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
             int currentSex = -1;
             string currentExt = null;
             TreeNode nodeSex = null, nodeExt = null;
@@ -727,8 +709,7 @@ namespace CharaBox3
         }
         void LayoutTVGraphics()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             TreeNode nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -745,8 +726,7 @@ namespace CharaBox3
         }
         void LayoutTVGraphicsAge()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             TreeNode nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -758,13 +738,12 @@ namespace CharaBox3
                     nodeExt = new TreeNode(currentExt != "" ? currentExt : "なし");
                     tvChara.Nodes.Add(nodeExt);
                 }
-                nodeExt.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
+                nodeExt.Nodes.Add(j.ToString(), $"{CharaData.GetAgeString(data.chara[sortedList[i]].age)} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVGraphicsSize()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             TreeNode nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -776,13 +755,12 @@ namespace CharaBox3
                     nodeExt = new TreeNode(currentExt != "" ? currentExt : "なし");
                     tvChara.Nodes.Add(nodeExt);
                 }
-                nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[j].name[0]);
+                nodeExt.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].size} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVGraphicsUpdate()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             TreeNode nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -794,13 +772,12 @@ namespace CharaBox3
                     nodeExt = new TreeNode(currentExt != "" ? currentExt : "なし");
                     tvChara.Nodes.Add(nodeExt);
                 }
-                nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[j].name[0]);
+                nodeExt.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].update:yyyy/MM/dd HH:mm:ss} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVGraphicsDescription()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             TreeNode nodeExt = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -812,13 +789,12 @@ namespace CharaBox3
                     nodeExt = new TreeNode(currentExt != "" ? currentExt : "なし");
                     tvChara.Nodes.Add(nodeExt);
                 }
-                nodeExt.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "字 " + data.chara[j].name[0]);
+                nodeExt.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].description.Length}字 {data.chara[j].name[0]}");
             }
         }
         void LayoutTVGraphicsGame()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null, currentGame = null;
             TreeNode nodeExt = null, nodeGame = null;
             for (int i = 0; i < data.chara.Length; i++)
@@ -842,8 +818,7 @@ namespace CharaBox3
         }
         void LayoutTVGraphicsSex()
         {
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        new ComparerGraphics(ref data.chara), new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { new ComparerGraphics(ref data.chara), new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             int currentSex = -1;
             TreeNode nodeExt = null, nodeSex = null;
@@ -869,8 +844,7 @@ namespace CharaBox3
         void LayoutTVFind()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerABC(ref data.chara) }));
             bool bFound = true;
             TreeNode nodeFind = new TreeNode("条件に一致");
             tvChara.Nodes.Add(nodeFind);
@@ -889,8 +863,7 @@ namespace CharaBox3
         void LayoutTVFindAge()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerAge(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             TreeNode nodeFind = new TreeNode("条件に一致");
             tvChara.Nodes.Add(nodeFind);
@@ -903,14 +876,13 @@ namespace CharaBox3
                     nodeFind = new TreeNode("条件に不一致");
                     tvChara.Nodes.Add(nodeFind);
                 }
-                nodeFind.Nodes.Add(j.ToString(), CharaData.GetAgeString(data.chara[sortedList[i]].age) + " " + data.chara[sortedList[i]].name[0]);
+                nodeFind.Nodes.Add(j.ToString(), $"{CharaData.GetAgeString(data.chara[sortedList[i]].age)} {data.chara[sortedList[i]].name[0]}");
             }
         }
         void LayoutTVFindSize()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerSize(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             TreeNode nodeFind = new TreeNode("条件に一致");
             tvChara.Nodes.Add(nodeFind);
@@ -923,14 +895,13 @@ namespace CharaBox3
                     nodeFind = new TreeNode("条件に不一致");
                     tvChara.Nodes.Add(nodeFind);
                 }
-                nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].size + " " + data.chara[j].name[0]);
+                nodeFind.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].size} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVFindUpdate()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerUpdate(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             TreeNode nodeFind = new TreeNode("条件に一致");
             tvChara.Nodes.Add(nodeFind);
@@ -943,14 +914,13 @@ namespace CharaBox3
                     nodeFind = new TreeNode("条件に不一致");
                     tvChara.Nodes.Add(nodeFind);
                 }
-                nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].update.ToString("yyyy/MM/dd HH:mm:ss") + " " + data.chara[j].name[0]);
+                nodeFind.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].update:yyyy/MM/dd HH:mm:ss} {data.chara[j].name[0]}");
             }
         }
         void LayoutTVFindDescription()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerDescription(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             TreeNode nodeFind = new TreeNode("条件に一致");
             tvChara.Nodes.Add(nodeFind);
@@ -963,14 +933,13 @@ namespace CharaBox3
                     nodeFind = new TreeNode("条件に不一致");
                     tvChara.Nodes.Add(nodeFind);
                 }
-                nodeFind.Nodes.Add(j.ToString(), data.chara[sortedList[i]].description.Length.ToString() + "字 " + data.chara[j].name[0]);
+                nodeFind.Nodes.Add(j.ToString(), $"{data.chara[sortedList[i]].description.Length}字 {data.chara[j].name[0]}");
             }
         }
         void LayoutTVFindGame()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerGame(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             string currentGame = null;
             TreeNode nodeFind = new TreeNode("条件に一致"), nodeGame = null;
@@ -997,8 +966,7 @@ namespace CharaBox3
         void LayoutTVFindSex()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerSex(ref data.chara), new ComparerABC(ref data.chara) }));
             bool bFound = true;
             int currentSex = -1;
             TreeNode nodeFind = new TreeNode("条件に一致"), nodeSex = null;
@@ -1025,8 +993,7 @@ namespace CharaBox3
         void LayoutTVFindGraphics()
         {
             ComparerFind f = new ComparerFind(ref data.chara, find);
-            Array.Sort(sortedList, new ComparerMulti(new System.Collections.IComparer[] {
-                        f, new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
+            Array.Sort(sortedList, new ComparerMulti(new IComparer[] { f, new ComparerGraphics(ref data.chara), new ComparerABC(ref data.chara) }));
             string currentExt = null;
             bool bFound = true;
             TreeNode nodeExt = null, nodeFind = new TreeNode("条件に一致");
@@ -1055,7 +1022,7 @@ namespace CharaBox3
 
         private void ViewChara(int i)
         {
-            CharaData.CharaInfo c = data.chara[i];
+            var c = data.chara[i];
             // 名前
             cmbName.Items.Clear();
             foreach (string s1 in c.name) cmbName.Items.Add(s1);
@@ -1066,12 +1033,12 @@ namespace CharaBox3
             cmbGame.SelectedIndex = 0;
             // その他もろもろ
             cmbInfo.Items.Clear();
-            cmbInfo.Items.Add("" + CharaData.GetSex(c.sex) + (c.age != "" ? "  " + CharaData.GetAgeString(c.age) : "") + (c.size != "" ? "  " + c.size : "") + "  説明：" + c.description.Length + "文字" + "  更新：" + c.update.ToString());
-            cmbInfo.Items.Add("性別：" + CharaData.GetSex(c.sex));
-            if (c.age != "") cmbInfo.Items.Add("年齢：" + CharaData.GetAgeString(c.age) + " = " + (CharaData.pqaAge.GetValue(c.age) / 31536000.0).ToString() + "年");
-            if (c.size != "") cmbInfo.Items.Add("大きさ：" + c.size + " = " + CharaData.pqaSize.GetValue(c.size).ToString() + "m");
-            cmbInfo.Items.Add("説明の長さ：" + c.description.Length + "文字");
-            cmbInfo.Items.Add("最終更新：" + c.update.ToString());
+            cmbInfo.Items.Add($"{CharaData.GetSex(c.sex)}{(c.age != "" ? "  " + CharaData.GetAgeString(c.age) : "")}{(c.size != "" ? "  " + c.size : "")}  説明：{c.description.Length}文字  更新：{c.update}");
+            cmbInfo.Items.Add($"性別：{CharaData.GetSex(c.sex)}");
+            if (c.age != "") cmbInfo.Items.Add($"年齢：{CharaData.GetAgeString(c.age)} = {CharaData.pqaAge.GetValue(c.age) / 31536000.0}年");
+            if (c.size != "") cmbInfo.Items.Add($"大きさ：{c.size} = {CharaData.pqaSize.GetValue(c.size)}m");
+            cmbInfo.Items.Add($"説明の長さ：{c.description.Length}文字");
+            cmbInfo.Items.Add($"最終更新：{c.update}");
             cmbInfo.SelectedIndex = 0;
             // 説明
             txtDescription.Text = c.description;
@@ -1082,7 +1049,7 @@ namespace CharaBox3
                 ImageAnimator.StopAnimate(picImage.Image, new EventHandler(OnFrameChanged));
             }
             Image img;
-            if (System.IO.File.Exists("bmp/" + c.graphic))
+            if (File.Exists("bmp/" + c.graphic))
             {
                 img = Image.FromFile("bmp/" + c.graphic);
                 if (ImageAnimator.CanAnimate(img))
@@ -1104,12 +1071,11 @@ namespace CharaBox3
             {
                 using StreamReader sr = new StreamReader("CharaBox3.ini");
                 string line;
-                string[] item;
-                char[] sep = new char[] { '\t' };
-                FormWindowState state = FormWindowState.Normal;
+                var sep = new char[] { '\t' };
+                var state = FormWindowState.Normal;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    item = line.Split(sep);
+                    string[] item = line.Split(sep);
                     switch (item[0])
                     {
                         case "File":
@@ -1119,12 +1085,12 @@ namespace CharaBox3
                             miMainFile.DropDown.Items.Add(item[1], null, new EventHandler(miMainFile_Click));
                             break;
                         case "Location":
-                            this.Left = int.Parse(item[1]);
-                            this.Top = int.Parse(item[2]);
+                            Left = int.Parse(item[1]);
+                            Top = int.Parse(item[2]);
                             break;
                         case "Size":
-                            this.Width = int.Parse(item[1]);
-                            this.Height = int.Parse(item[2]);
+                            Width = int.Parse(item[1]);
+                            Height = int.Parse(item[2]);
                             break;
                         case "State":
                             state = (FormWindowState)int.Parse(item[1]);
@@ -1132,7 +1098,7 @@ namespace CharaBox3
                         default: break;
                     }
                 }
-                this.WindowState = state;
+                WindowState = state;
             }
             catch (Exception)
             {
@@ -1166,17 +1132,12 @@ namespace CharaBox3
             try
             {
                 ViewChara(int.Parse(e.Node.Name));
-                ssLabel.Text = (e.Node.Level > 0 ? e.Node.Parent.Nodes.Count : tvChara.Nodes.Count).ToString() + "項目中" + (e.Node.Index + 1).ToString() + "番目  全" + data.chara.Length.ToString() + "項目";
+                ssLabel.Text = $"{(e.Node.Level > 0 ? e.Node.Parent.Nodes.Count : tvChara.Nodes.Count)}項目中{e.Node.Index + 1}番目  全{data.chara.Length}項目";
             }
             catch (Exception)
             {
-                ssLabel.Text = "子項目" + e.Node.Nodes.Count.ToString() + "個  全" + data.chara.Length.ToString() + "項目 " + (100.0f * (float)e.Node.Nodes.Count / (float)data.chara.Length).ToString("0.00") + "%";
+                ssLabel.Text = $"子項目{e.Node.Nodes.Count}個  全{data.chara.Length}項目 {100.0f * e.Node.Nodes.Count / data.chara.Length:0.00}%";
             }
-        }
-
-        private void picImage_Paint(object sender, PaintEventArgs e)
-        {
-            //ImageAnimator.UpdateFrames();
         }
 
         private void OnFrameChanged(object o, EventArgs e)
@@ -1223,7 +1184,7 @@ namespace CharaBox3
 
         private void miMainDelete_Click(object sender, EventArgs e)
         {
-            string title = data.chara[data.selected].name[0] + "の削除";
+            var title = $"{data.chara[data.selected].name[0]}の削除";
             if (MessageBox.Show("削除してよいのですか？", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
             if (MessageBox.Show("やっぱり削除したくないでしょう？", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
             if (MessageBox.Show("では、消します。", title, MessageBoxButtons.OKCancel) == DialogResult.Cancel) return;
@@ -1249,11 +1210,11 @@ namespace CharaBox3
             using StreamWriter sw = new StreamWriter("CharaBox3.ini");
             foreach (DataFiles f in files)
             {
-                sw.WriteLine("File\t" + f.name + "\t" + f.file);
+                sw.WriteLine($"File\t{f.name}\t{f.file}");
             }
-            sw.WriteLine("Location\t" + sizesaver.Location.X.ToString() + "\t" + sizesaver.Location.Y.ToString());
-            sw.WriteLine("Size\t" + sizesaver.Size.Width.ToString() + "\t" + sizesaver.Size.Height.ToString());
-            sw.WriteLine("State\t" + ((int)sizesaver.WindowState).ToString());
+            sw.WriteLine($"Location\t{sizesaver.Location.X}\t{sizesaver.Location.Y}");
+            sw.WriteLine($"Size\t{sizesaver.Size.Width}\t{sizesaver.Size.Height}");
+            sw.WriteLine($"State\t{(int)sizesaver.WindowState}");
         }
 
         private void miMainFile_Click(object sender, EventArgs e)
@@ -1425,11 +1386,11 @@ namespace CharaBox3
 
         private void miMainOpen_Click(object sender, EventArgs e)
         {
-            string cd = Directory.GetCurrentDirectory();
+            var cd = Directory.GetCurrentDirectory();
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
                 Directory.SetCurrentDirectory(cd);
-                CharaData d = new CharaData(ofdFile.FileName);
+                var d = new CharaData(ofdFile.FileName);
                 if (d.Load())
                 {
                     data.Save();
@@ -1458,7 +1419,7 @@ namespace CharaBox3
             using var sfd = new SaveFileDialog()
             {
                 DefaultExt = "json",
-                FileName = Path.GetFileNameWithoutExtension(data.fileName) + ".json",
+                FileName = $"{Path.GetFileNameWithoutExtension(data.fileName)}.json",
                 Filter = "JSON形式|*.json|その他|*.*",
                 Title = "JSON形式でエクスポート",
             };

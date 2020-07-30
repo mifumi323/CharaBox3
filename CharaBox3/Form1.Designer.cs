@@ -681,7 +681,6 @@
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picImage.TabIndex = 7;
             this.picImage.TabStop = false;
-            this.picImage.Paint += new System.Windows.Forms.PaintEventHandler(this.picImage_Paint);
             // 
             // ofdFile
             // 
