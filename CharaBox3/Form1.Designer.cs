@@ -30,18 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.msMain = new System.Windows.Forms.MenuStrip();
-            this.miMain = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miMainFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miMainOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.miMainExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.miMainExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.miItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miMainEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.miMainAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.miMainDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.miMainRandom = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.miMainExitNoSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.miMainExit = new System.Windows.Forms.ToolStripMenuItem();
             this.miView = new System.Windows.Forms.ToolStripMenuItem();
             this.miViewABC = new System.Windows.Forms.ToolStripMenuItem();
             this.miViewAge = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,8 +99,6 @@
             this.pnlImage = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportAsJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.ssBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
@@ -114,7 +114,8 @@
             // msMain
             // 
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miMain,
+            this.miFile,
+            this.miItem,
             this.miView});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
@@ -123,42 +124,77 @@
             this.msMain.TabIndex = 2;
             this.msMain.Text = "menuStrip1";
             // 
-            // miMain
+            // miFile
             // 
-            this.miMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miMainFile,
             this.miMainOpen,
             this.exportToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.miMainEdit,
-            this.miMainAdd,
-            this.miMainDelete,
-            this.toolStripMenuItem1,
-            this.miMainRandom,
             this.toolStripMenuItem2,
             this.miMainExitNoSave,
             this.miMainExit});
-            this.miMain.Name = "miMain";
-            this.miMain.Size = new System.Drawing.Size(64, 20);
-            this.miMain.Text = "メイン(&M)";
+            this.miFile.Name = "miFile";
+            this.miFile.Size = new System.Drawing.Size(67, 20);
+            this.miFile.Text = "ファイル(&F)";
             // 
             // miMainFile
             // 
             this.miMainFile.Name = "miMainFile";
-            this.miMainFile.Size = new System.Drawing.Size(200, 22);
+            this.miMainFile.Size = new System.Drawing.Size(187, 22);
             this.miMainFile.Text = "ファイル切り替え";
             // 
             // miMainOpen
             // 
             this.miMainOpen.Name = "miMainOpen";
-            this.miMainOpen.Size = new System.Drawing.Size(200, 22);
+            this.miMainOpen.Size = new System.Drawing.Size(187, 22);
             this.miMainOpen.Text = "直接開く(&O)";
             this.miMainOpen.Click += new System.EventHandler(this.miMainOpen_Click);
             // 
-            // toolStripMenuItem3
+            // exportToolStripMenuItem
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(197, 6);
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportAsJsonToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.exportToolStripMenuItem.Text = "別形式でエクスポート(&E)";
+            // 
+            // exportAsJsonToolStripMenuItem
+            // 
+            this.exportAsJsonToolStripMenuItem.Name = "exportAsJsonToolStripMenuItem";
+            this.exportAsJsonToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.exportAsJsonToolStripMenuItem.Text = "&JSON形式";
+            this.exportAsJsonToolStripMenuItem.Click += new System.EventHandler(this.exportAsJsonToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 6);
+            // 
+            // miMainExitNoSave
+            // 
+            this.miMainExitNoSave.Name = "miMainExitNoSave";
+            this.miMainExitNoSave.Size = new System.Drawing.Size(187, 22);
+            this.miMainExitNoSave.Text = "保存せず終了(&Q)";
+            this.miMainExitNoSave.Click += new System.EventHandler(this.miMainExitNoSave_Click);
+            // 
+            // miMainExit
+            // 
+            this.miMainExit.Name = "miMainExit";
+            this.miMainExit.Size = new System.Drawing.Size(187, 22);
+            this.miMainExit.Text = "終了(&X)";
+            this.miMainExit.Click += new System.EventHandler(this.miMainExit_Click);
+            // 
+            // miItem
+            // 
+            this.miItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miMainEdit,
+            this.miMainAdd,
+            this.miMainDelete,
+            this.toolStripMenuItem1,
+            this.miMainRandom});
+            this.miItem.Name = "miItem";
+            this.miItem.Size = new System.Drawing.Size(54, 20);
+            this.miItem.Text = "項目(&I)";
             // 
             // miMainEdit
             // 
@@ -197,25 +233,6 @@
             this.miMainRandom.Text = "ランダムセレクト(&R)";
             this.miMainRandom.Click += new System.EventHandler(this.miMainRandom_Click);
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 6);
-            // 
-            // miMainExitNoSave
-            // 
-            this.miMainExitNoSave.Name = "miMainExitNoSave";
-            this.miMainExitNoSave.Size = new System.Drawing.Size(200, 22);
-            this.miMainExitNoSave.Text = "保存せず終了(&Q)";
-            this.miMainExitNoSave.Click += new System.EventHandler(this.miMainExitNoSave_Click);
-            // 
-            // miMainExit
-            // 
-            this.miMainExit.Name = "miMainExit";
-            this.miMainExit.Size = new System.Drawing.Size(200, 22);
-            this.miMainExit.Text = "終了(&X)";
-            this.miMainExit.Click += new System.EventHandler(this.miMainExit_Click);
-            // 
             // miView
             // 
             this.miView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -235,35 +252,35 @@
             // miViewABC
             // 
             this.miViewABC.Name = "miViewABC";
-            this.miViewABC.Size = new System.Drawing.Size(180, 22);
+            this.miViewABC.Size = new System.Drawing.Size(140, 22);
             this.miViewABC.Text = "50音順";
             this.miViewABC.Click += new System.EventHandler(this.miViewABC_Click);
             // 
             // miViewAge
             // 
             this.miViewAge.Name = "miViewAge";
-            this.miViewAge.Size = new System.Drawing.Size(180, 22);
+            this.miViewAge.Size = new System.Drawing.Size(140, 22);
             this.miViewAge.Text = "年齢順";
             this.miViewAge.Click += new System.EventHandler(this.miViewAge_Click);
             // 
             // miViewSize
             // 
             this.miViewSize.Name = "miViewSize";
-            this.miViewSize.Size = new System.Drawing.Size(180, 22);
+            this.miViewSize.Size = new System.Drawing.Size(140, 22);
             this.miViewSize.Text = "大きさ順";
             this.miViewSize.Click += new System.EventHandler(this.miViewSize_Click);
             // 
             // miViewUpdate
             // 
             this.miViewUpdate.Name = "miViewUpdate";
-            this.miViewUpdate.Size = new System.Drawing.Size(180, 22);
+            this.miViewUpdate.Size = new System.Drawing.Size(140, 22);
             this.miViewUpdate.Text = "更新日順";
             this.miViewUpdate.Click += new System.EventHandler(this.miViewUpdate_Click);
             // 
             // miViewDescription
             // 
             this.miViewDescription.Name = "miViewDescription";
-            this.miViewDescription.Size = new System.Drawing.Size(180, 22);
+            this.miViewDescription.Size = new System.Drawing.Size(140, 22);
             this.miViewDescription.Text = "説明の長さ順";
             this.miViewDescription.Click += new System.EventHandler(this.miViewDescription_Click);
             // 
@@ -278,7 +295,7 @@
             this.miViewGameSex,
             this.miViewGameGraphics});
             this.miViewGame.Name = "miViewGame";
-            this.miViewGame.Size = new System.Drawing.Size(180, 22);
+            this.miViewGame.Size = new System.Drawing.Size(140, 22);
             this.miViewGame.Text = "登場作品別";
             // 
             // miViewGameABC
@@ -341,7 +358,7 @@
             this.miViewSexGame,
             this.miViewSexGraphics});
             this.miViewSex.Name = "miViewSex";
-            this.miViewSex.Size = new System.Drawing.Size(180, 22);
+            this.miViewSex.Size = new System.Drawing.Size(140, 22);
             this.miViewSex.Text = "性別";
             // 
             // miViewSexABC
@@ -404,7 +421,7 @@
             this.miViewGraphicsGame,
             this.miViewGraphicsSex});
             this.miViewGraphics.Name = "miViewGraphics";
-            this.miViewGraphics.Size = new System.Drawing.Size(180, 22);
+            this.miViewGraphics.Size = new System.Drawing.Size(140, 22);
             this.miViewGraphics.Text = "画像別";
             // 
             // miViewGraphicsABC
@@ -468,7 +485,7 @@
             this.miViewFindSex,
             this.miViewFindGraphics});
             this.miViewFind.Name = "miViewFind";
-            this.miViewFind.Size = new System.Drawing.Size(180, 22);
+            this.miViewFind.Size = new System.Drawing.Size(140, 22);
             this.miViewFind.Text = "検索";
             // 
             // miViewFindABC
@@ -687,21 +704,6 @@
             this.ofdFile.DefaultExt = "dat";
             this.ofdFile.Filter = "データ|*.dat|その他|*.*";
             // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportAsJsonToolStripMenuItem});
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.exportToolStripMenuItem.Text = "別形式でエクスポート(&E)";
-            // 
-            // exportAsJsonToolStripMenuItem
-            // 
-            this.exportAsJsonToolStripMenuItem.Name = "exportAsJsonToolStripMenuItem";
-            this.exportAsJsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportAsJsonToolStripMenuItem.Text = "&JSON形式";
-            this.exportAsJsonToolStripMenuItem.Click += new System.EventHandler(this.exportAsJsonToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -738,8 +740,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip msMain;
-        private System.Windows.Forms.ToolStripMenuItem miMain;
-        private System.Windows.Forms.ToolStripMenuItem miMainEdit;
+        private System.Windows.Forms.ToolStripMenuItem miFile;
         private System.Windows.Forms.ToolStripMenuItem miMainAdd;
         private System.Windows.Forms.ToolStripMenuItem miMainDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
@@ -754,7 +755,6 @@
         private System.Windows.Forms.ToolStripMenuItem miViewUpdate;
         private System.Windows.Forms.ToolStripMenuItem miViewDescription;
         private System.Windows.Forms.ToolStripMenuItem miMainFile;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.StatusStrip ssBottom;
         private System.Windows.Forms.SplitContainer scMain;
         private System.Windows.Forms.TreeView tvChara;
@@ -807,6 +807,8 @@
         private System.Windows.Forms.ToolStripMenuItem miMainExitNoSave;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportAsJsonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miItem;
+        private System.Windows.Forms.ToolStripMenuItem miMainEdit;
     }
 }
 
