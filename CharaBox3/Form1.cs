@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using MifuminLib;
 
@@ -60,7 +62,7 @@ namespace CharaBox3
         int[] sortedList = new int[0];
 
         struct DataFiles { public string name, file; }
-        DataFiles[] files = new DataFiles[0];
+        private readonly List<DataFiles> files = new List<DataFiles>();
 
         CharaData.FindCondition find;
 
@@ -1080,9 +1082,11 @@ namespace CharaBox3
                     switch (item[0])
                     {
                         case "File":
-                            Array.Resize(ref files, files.Length + 1);
-                            files[files.Length - 1].name = item[1];
-                            files[files.Length - 1].file = item[2];
+                            files.Add(new DataFiles
+                            {
+                                name = item[1],
+                                file = item[2],
+                            });
                             miFileSelect.DropDown.Items.Add(item[1], null, new EventHandler(miFileSelect_Click));
                             break;
                         case "Location":
@@ -1107,12 +1111,14 @@ namespace CharaBox3
             catch (Exception)
             {
             }
-            if (files.Length == 0)
+            if (!files.Any())
             {
-                Array.Resize(ref files, files.Length + 1);
-                files[files.Length - 1].name = "デフォルト";
-                files[files.Length - 1].file = "default.dat";
-                miFileSelect.DropDown.Items.Add(files[files.Length - 1].name, null, new EventHandler(miFileSelect_Click));
+                files.Add(new DataFiles
+                {
+                    name = "デフォルト",
+                    file = "default.dat",
+                });
+                miFileSelect.DropDown.Items.Add(files.Last().name, null, new EventHandler(miFileSelect_Click));
             }
             data = new CharaData(files[0].file);
             imgDefault = picImage.Image;
