@@ -1448,6 +1448,13 @@ namespace CharaBox3
             {
                 return;
             }
+            files.Add(new DataFiles
+            {
+                name = f.DisplayName,
+                file = f.FileName,
+            });
+            var mi = miFileSelect.DropDown.Items.Add(f.DisplayName, null, new EventHandler(miFileSelect_Click));
+            mi.PerformClick();
         }
     }
 }
