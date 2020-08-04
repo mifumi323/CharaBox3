@@ -30,11 +30,12 @@
         {
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileSelect = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFileAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExportAsJson = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +101,6 @@
             this.pnlImage = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
-            this.miFileAdd = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -115,6 +115,21 @@
             this.pnlImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new System.Drawing.Size(184, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new System.Drawing.Size(184, 6);
             // 
             // msMain
             // 
@@ -150,6 +165,13 @@
             this.miFileSelect.Size = new System.Drawing.Size(187, 22);
             this.miFileSelect.Text = "ファイル切り替え";
             // 
+            // miFileAdd
+            // 
+            this.miFileAdd.Name = "miFileAdd";
+            this.miFileAdd.Size = new System.Drawing.Size(187, 22);
+            this.miFileAdd.Text = "ファイルリストに追加(&A)";
+            this.miFileAdd.Click += new System.EventHandler(this.miFileAdd_Click);
+            // 
             // miFileOpen
             // 
             this.miFileOpen.Name = "miFileOpen";
@@ -171,11 +193,6 @@
             this.miFileExportAsJson.Size = new System.Drawing.Size(126, 22);
             this.miFileExportAsJson.Text = "&JSON形式";
             this.miFileExportAsJson.Click += new System.EventHandler(this.miFileExportAsJson_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new System.Drawing.Size(184, 6);
             // 
             // miFileExitNoSave
             // 
@@ -226,11 +243,6 @@
             this.miItemDelete.Size = new System.Drawing.Size(200, 22);
             this.miItemDelete.Text = "削除(&D)";
             this.miItemDelete.Click += new System.EventHandler(this.miItemDelete_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
             // 
             // miItemRandom
             // 
@@ -710,17 +722,6 @@
             // 
             this.ofdFile.DefaultExt = "dat";
             this.ofdFile.Filter = "データ|*.dat|その他|*.*";
-            // 
-            // toolStripMenuItem3
-            // 
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new System.Drawing.Size(184, 6);
-            // 
-            // miFileAdd
-            // 
-            this.miFileAdd.Name = "miFileAdd";
-            this.miFileAdd.Size = new System.Drawing.Size(187, 22);
-            this.miFileAdd.Text = "ファイルリストに追加(&A)";
             // 
             // Form1
             // 

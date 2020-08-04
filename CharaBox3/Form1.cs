@@ -1434,5 +1434,14 @@ namespace CharaBox3
             }
             File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(data.chara));
         }
+
+        private void miFileAdd_Click(object sender, EventArgs e)
+        {
+            using var f = new FormAddFile();
+            if (f.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+        }
     }
 }
