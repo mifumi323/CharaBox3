@@ -10,6 +10,8 @@ namespace CharaBox3
         public string DisplayName => txtDisplayName.Text;
         public string FileName => !string.IsNullOrEmpty(txtFileName.Text) ? txtFileName.Text : $"{txtDisplayName.Text}.dat";
 
+        public string[] UsedTitles { get; set; }
+
         /// <summary>
         /// 使用不可能なファイル名(デバイス名として予約済みなんだとか)
         /// </summary>
@@ -51,6 +53,11 @@ namespace CharaBox3
                 errorProvider.SetError(txtDisplayName, "表示名を記入してください。");
                 ok = false;
             }
+            if (UsedTitles.Contains(DisplayName))
+            {
+                errorProvider.SetError(txtDisplayName, $"{DisplayName}という表示名は既に使用されています。別の表示名を指定してください。");
+                ok = false;
+            }
             var errorChars = Path.GetInvalidFileNameChars().Where(c => FileName.Contains(c)).ToArray();
             if (errorChars.Any())
             {
@@ -67,6 +74,11 @@ namespace CharaBox3
             if (errPrefix != null)
             {
                 errorProvider.SetError(txtFileName, $"{errPrefix}で始まるファイル名は使えません。別のファイル名を指定してください。");
+                ok = false;
+            }
+            if (File.Exists(FileName) || Directory.Exists(FileName))
+            {
+                errorProvider.SetError(txtFileName, $"{FileName}というファイル名は既に使用されています。別のファイル名を指定してください。");
                 ok = false;
             }
             btnOK.Enabled = ok;

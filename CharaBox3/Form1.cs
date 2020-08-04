@@ -1443,7 +1443,10 @@ namespace CharaBox3
 
         private void miFileAdd_Click(object sender, EventArgs e)
         {
-            using var f = new FormAddFile();
+            using var f = new FormAddFile()
+            {
+                UsedTitles = files.Select(f => f.name).ToArray(),
+            };
             if (f.ShowDialog(this) != DialogResult.OK)
             {
                 return;
