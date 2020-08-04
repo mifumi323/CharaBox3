@@ -6,7 +6,7 @@ namespace CharaBox3
     public partial class FormAddFile : Form
     {
         public string DisplayName => txtDisplayName.Text;
-        public string FileName => !string.IsNullOrEmpty(txtFileName.Text) ? txtFileName.Text : txtDisplayName.Text;
+        public string FileName => !string.IsNullOrEmpty(txtFileName.Text) ? txtFileName.Text : $"{txtDisplayName.Text}.dat";
 
         public FormAddFile()
         {

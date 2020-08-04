@@ -63,9 +63,9 @@
             lblFileName.AutoSize = true;
             lblFileName.Location = new System.Drawing.Point(12, 46);
             lblFileName.Name = "lblFileName";
-            lblFileName.Size = new System.Drawing.Size(180, 12);
+            lblFileName.Size = new System.Drawing.Size(165, 12);
             lblFileName.TabIndex = 2;
-            lblFileName.Text = "ファイル名(省略時はファイル名と同じ)";
+            lblFileName.Text = "ファイル名(省略時は表示名+.dat)";
             // 
             // txtFileName
             // 
