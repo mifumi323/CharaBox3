@@ -1130,6 +1130,7 @@ namespace CharaBox3
             data.Load();
             ChangeView(viewMode);
             LayoutInfo();
+            RefreshRemoveMenu();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -1458,6 +1459,12 @@ namespace CharaBox3
             });
             var mi = miFileSelect.DropDown.Items.Add(f.DisplayName, null, new EventHandler(miFileSelect_Click));
             mi.PerformClick();
+            RefreshRemoveMenu();
+        }
+
+        private void RefreshRemoveMenu()
+        {
+            // TODO: miFileRemoveの子項目を増減する処理
         }
     }
 }
