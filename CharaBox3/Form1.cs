@@ -1239,6 +1239,7 @@ namespace CharaBox3
                     data = new CharaData(f.file);
                     data.Load();
                     RefreshView();
+                    RefreshRemoveMenu();
                 }
             }
         }
@@ -1408,6 +1409,7 @@ namespace CharaBox3
                     data.Save();
                     data = d;
                     RefreshView();
+                    miFileRemove.Enabled = false;
                 }
                 else
                 {
@@ -1464,7 +1466,38 @@ namespace CharaBox3
 
         private void RefreshRemoveMenu()
         {
-            // TODO: miFileRemoveの子項目を増減する処理
+            var removableFiles = files.Where(file => file.file != data.fileName);
+            var menuItems = removableFiles.Select(file => new ToolStripMenuItem(file.name, null, miFileRemove_Click)).ToArray();
+            var hasRemovable = menuItems.Any();
+            miFileRemove.DropDownItems.Clear();
+            miFileRemove.Enabled = hasRemovable;
+            if (hasRemovable)
+            {
+                miFileRemove.DropDownItems.AddRange(menuItems);
+            }
+        }
+
+        private void miFileRemove_Click(object sender, EventArgs e)
+        {
+            var name = sender.ToString();
+            if (MessageBox.Show($"{name} 消すの？", $"{name} 消す", MessageBoxButtons.YesNo) == DialogResult.No) return;
+            if (MessageBox.Show($"マジで {name} 消すの？", $"{name} 消す！", MessageBoxButtons.YesNo) == DialogResult.No) return;
+            if (MessageBox.Show($"ここで「はい」押すと {name} はファイルごと消えちゃうけどいいんだね？", $"{name} 消す🚮", MessageBoxButtons.YesNo) == DialogResult.No) return;
+
+            try
+            {
+                var file = files.Single(file => file.name == name);
+                File.Delete(file.file);
+                files.Remove(file);
+                miFileSelect.DropDownItems.Clear();
+                miFileSelect.DropDownItems.AddRange(files.Select(file => new ToolStripMenuItem(file.name, null, miFileSelect_Click)).ToArray());
+                RefreshRemoveMenu();
+                MessageBox.Show("消しました。", $"{name} 消した");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"うまくいかんかった。\n\n{ex}");
+            }
         }
     }
 }
