@@ -1186,7 +1186,7 @@ namespace CharaBox3
 
         private void miItemEdit_Click(object sender, EventArgs e)
         {
-            if (data.selected >= data.chara.Length) return;
+            if (data.selected < 0 || data.selected >= data.chara.Length) return;
             var fe = new FormEdit
             {
                 chara = data.chara[data.selected]
