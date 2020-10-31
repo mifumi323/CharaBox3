@@ -1140,14 +1140,18 @@ namespace CharaBox3
 
         private void tvChara_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try
+            if (int.TryParse(e.Node.Name, out int i))
             {
-                ViewChara(int.Parse(e.Node.Name));
+                ViewChara(i);
                 ssLabel.Text = $"{(e.Node.Level > 0 ? e.Node.Parent.Nodes.Count : tvChara.Nodes.Count)}項目中{e.Node.Index + 1}番目  全{data.chara.Length}項目";
             }
-            catch (Exception)
+            else if (data.chara.Length > 0)
             {
                 ssLabel.Text = $"子項目{e.Node.Nodes.Count}個  全{data.chara.Length}項目 {100.0f * e.Node.Nodes.Count / data.chara.Length:0.00}%";
+            }
+            else
+            {
+                ssLabel.Text = $"子項目{e.Node.Nodes.Count}個  全{data.chara.Length}項目";
             }
         }
 
