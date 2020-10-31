@@ -1024,6 +1024,11 @@ namespace CharaBox3
 
         private void ViewChara(int i)
         {
+            if (i < 0 || i >= data.chara.Length)
+            {
+                ViewNothing();
+                return;
+            }
             var c = data.chara[i];
             // 名前
             cmbName.Items.Clear();
@@ -1064,6 +1069,20 @@ namespace CharaBox3
             picImage.Image = img;
             LayoutInfo();
             data.selected = i;
+        }
+
+        private void ViewNothing()
+        {
+            cmbName.Items.Clear();
+            cmbName.Text = "";
+            cmbGame.Items.Clear();
+            cmbGame.Text = "";
+            cmbInfo.Items.Clear();
+            cmbInfo.Text = "";
+            txtDescription.Text = "";
+            picImage.Image = imgDefault;
+            LayoutInfo();
+            data.selected = -1;
         }
 
         private void Form1_Load(object sender, EventArgs e)
