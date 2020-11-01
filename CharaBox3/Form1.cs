@@ -1527,5 +1527,31 @@ namespace CharaBox3
                 MessageBox.Show($"うまくいかんかった。\n\n{ex}");
             }
         }
+
+        private void cmsiFileExportAsJson_Click(object sender, EventArgs e)
+        {
+            ExportAsJson(SelectedCharacters(tvChara.SelectedNode));
+        }
+
+        private IEnumerable<CharaData.CharaInfo> SelectedCharacters(TreeNode selectedNode)
+        {
+            if (int.TryParse(selectedNode.Name, out var i))
+            {
+                if (0 <= i && i < data.chara.Length)
+                {
+                    yield return data.chara[i];
+                }
+            }
+            else
+            {
+                foreach (TreeNode node in selectedNode.Nodes)
+                {
+                    foreach (var chara in SelectedCharacters(node))
+                    {
+                        yield return chara;
+                    }
+                }
+            }
+        }
     }
 }

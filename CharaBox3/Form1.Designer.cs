@@ -106,6 +106,7 @@
             this.cmsItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mcsiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsiFileExportAsJson = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -284,35 +285,35 @@
             // miViewABC
             // 
             this.miViewABC.Name = "miViewABC";
-            this.miViewABC.Size = new System.Drawing.Size(140, 22);
+            this.miViewABC.Size = new System.Drawing.Size(180, 22);
             this.miViewABC.Text = "50音順";
             this.miViewABC.Click += new System.EventHandler(this.miViewABC_Click);
             // 
             // miViewAge
             // 
             this.miViewAge.Name = "miViewAge";
-            this.miViewAge.Size = new System.Drawing.Size(140, 22);
+            this.miViewAge.Size = new System.Drawing.Size(180, 22);
             this.miViewAge.Text = "年齢順";
             this.miViewAge.Click += new System.EventHandler(this.miViewAge_Click);
             // 
             // miViewSize
             // 
             this.miViewSize.Name = "miViewSize";
-            this.miViewSize.Size = new System.Drawing.Size(140, 22);
+            this.miViewSize.Size = new System.Drawing.Size(180, 22);
             this.miViewSize.Text = "大きさ順";
             this.miViewSize.Click += new System.EventHandler(this.miViewSize_Click);
             // 
             // miViewUpdate
             // 
             this.miViewUpdate.Name = "miViewUpdate";
-            this.miViewUpdate.Size = new System.Drawing.Size(140, 22);
+            this.miViewUpdate.Size = new System.Drawing.Size(180, 22);
             this.miViewUpdate.Text = "更新日順";
             this.miViewUpdate.Click += new System.EventHandler(this.miViewUpdate_Click);
             // 
             // miViewDescription
             // 
             this.miViewDescription.Name = "miViewDescription";
-            this.miViewDescription.Size = new System.Drawing.Size(140, 22);
+            this.miViewDescription.Size = new System.Drawing.Size(180, 22);
             this.miViewDescription.Text = "説明の長さ順";
             this.miViewDescription.Click += new System.EventHandler(this.miViewDescription_Click);
             // 
@@ -327,7 +328,7 @@
             this.miViewGameSex,
             this.miViewGameGraphics});
             this.miViewGame.Name = "miViewGame";
-            this.miViewGame.Size = new System.Drawing.Size(140, 22);
+            this.miViewGame.Size = new System.Drawing.Size(180, 22);
             this.miViewGame.Text = "登場作品別";
             // 
             // miViewGameABC
@@ -390,7 +391,7 @@
             this.miViewSexGame,
             this.miViewSexGraphics});
             this.miViewSex.Name = "miViewSex";
-            this.miViewSex.Size = new System.Drawing.Size(140, 22);
+            this.miViewSex.Size = new System.Drawing.Size(180, 22);
             this.miViewSex.Text = "性別";
             // 
             // miViewSexABC
@@ -453,7 +454,7 @@
             this.miViewGraphicsGame,
             this.miViewGraphicsSex});
             this.miViewGraphics.Name = "miViewGraphics";
-            this.miViewGraphics.Size = new System.Drawing.Size(140, 22);
+            this.miViewGraphics.Size = new System.Drawing.Size(180, 22);
             this.miViewGraphics.Text = "画像別";
             // 
             // miViewGraphicsABC
@@ -517,7 +518,7 @@
             this.miViewFindSex,
             this.miViewFindGraphics});
             this.miViewFind.Name = "miViewFind";
-            this.miViewFind.Size = new System.Drawing.Size(140, 22);
+            this.miViewFind.Size = new System.Drawing.Size(180, 22);
             this.miViewFind.Text = "検索";
             // 
             // miViewFindABC
@@ -616,7 +617,6 @@
             // 
             this.tvChara.ContextMenuStrip = this.cmsItem;
             this.tvChara.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvChara.HotTracking = true;
             this.tvChara.Location = new System.Drawing.Point(0, 0);
             this.tvChara.Name = "tvChara";
             this.tvChara.Size = new System.Drawing.Size(152, 220);
@@ -742,15 +742,16 @@
             // 
             this.cmsItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsiEdit,
-            this.mcsiDelete});
+            this.mcsiDelete,
+            this.cmsiFileExportAsJson});
             this.cmsItem.Name = "cmsItem";
-            this.cmsItem.Size = new System.Drawing.Size(165, 48);
+            this.cmsItem.Size = new System.Drawing.Size(218, 92);
             // 
             // cmsiEdit
             // 
             this.cmsiEdit.Name = "cmsiEdit";
             this.cmsiEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.cmsiEdit.Size = new System.Drawing.Size(164, 22);
+            this.cmsiEdit.Size = new System.Drawing.Size(217, 22);
             this.cmsiEdit.Text = "編集(&E)";
             this.cmsiEdit.Click += new System.EventHandler(this.miItemEdit_Click);
             // 
@@ -758,9 +759,16 @@
             // 
             this.mcsiDelete.Name = "mcsiDelete";
             this.mcsiDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.mcsiDelete.Size = new System.Drawing.Size(164, 22);
+            this.mcsiDelete.Size = new System.Drawing.Size(217, 22);
             this.mcsiDelete.Text = "削除(&D)";
             this.mcsiDelete.Click += new System.EventHandler(this.miItemDelete_Click);
+            // 
+            // cmsiFileExportAsJson
+            // 
+            this.cmsiFileExportAsJson.Name = "cmsiFileExportAsJson";
+            this.cmsiFileExportAsJson.Size = new System.Drawing.Size(217, 22);
+            this.cmsiFileExportAsJson.Text = "選択項目を&JSON形式で出力";
+            this.cmsiFileExportAsJson.Click += new System.EventHandler(this.cmsiFileExportAsJson_Click);
             // 
             // Form1
             // 
@@ -871,6 +879,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsItem;
         private System.Windows.Forms.ToolStripMenuItem cmsiEdit;
         private System.Windows.Forms.ToolStripMenuItem mcsiDelete;
+        private System.Windows.Forms.ToolStripMenuItem cmsiFileExportAsJson;
     }
 }
 
