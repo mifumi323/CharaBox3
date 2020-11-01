@@ -1453,7 +1453,12 @@ namespace CharaBox3
 
         private void miFileExportAsJson_Click(object sender, EventArgs e)
         {
-            using var sfd = new SaveFileDialog()
+            ExportAsJson(data.chara);
+        }
+
+        private void ExportAsJson(IEnumerable<CharaData.CharaInfo> chara)
+        {
+            var sfd = new SaveFileDialog()
             {
                 DefaultExt = "json",
                 FileName = $"{Path.GetFileNameWithoutExtension(data.fileName)}.json",
@@ -1464,7 +1469,7 @@ namespace CharaBox3
             {
                 return;
             }
-            File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(data.chara));
+            File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(chara));
         }
 
         private void miFileAdd_Click(object sender, EventArgs e)
