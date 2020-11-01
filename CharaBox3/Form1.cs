@@ -1458,7 +1458,7 @@ namespace CharaBox3
 
         private void ExportAsJson(IEnumerable<CharaData.CharaInfo> chara)
         {
-            var sfd = new SaveFileDialog()
+            using var sfd = new SaveFileDialog()
             {
                 DefaultExt = "json",
                 FileName = $"{Path.GetFileNameWithoutExtension(data.fileName)}.json",
