@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
             System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
@@ -36,6 +37,7 @@
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.miFileRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miFileExportAsJson = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +103,9 @@
             this.pnlImage = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.ofdFile = new System.Windows.Forms.OpenFileDialog();
-            this.miFileRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsItem = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsiEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mcsiDelete = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -115,6 +119,7 @@
             this.pnlInfoUpper.SuspendLayout();
             this.pnlImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
+            this.cmsItem.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMenuItem2
@@ -174,6 +179,12 @@
             this.miFileAdd.Text = "ファイルリストに追加(&A)";
             this.miFileAdd.Click += new System.EventHandler(this.miFileAdd_Click);
             // 
+            // miFileRemove
+            // 
+            this.miFileRemove.Name = "miFileRemove";
+            this.miFileRemove.Size = new System.Drawing.Size(191, 22);
+            this.miFileRemove.Text = "ファイルリストから削除(&R)";
+            // 
             // miFileOpen
             // 
             this.miFileOpen.Name = "miFileOpen";
@@ -192,7 +203,7 @@
             // miFileExportAsJson
             // 
             this.miFileExportAsJson.Name = "miFileExportAsJson";
-            this.miFileExportAsJson.Size = new System.Drawing.Size(126, 22);
+            this.miFileExportAsJson.Size = new System.Drawing.Size(180, 22);
             this.miFileExportAsJson.Text = "&JSON形式";
             this.miFileExportAsJson.Click += new System.EventHandler(this.miFileExportAsJson_Click);
             // 
@@ -603,7 +614,9 @@
             // 
             // tvChara
             // 
+            this.tvChara.ContextMenuStrip = this.cmsItem;
             this.tvChara.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvChara.HotTracking = true;
             this.tvChara.Location = new System.Drawing.Point(0, 0);
             this.tvChara.Name = "tvChara";
             this.tvChara.Size = new System.Drawing.Size(152, 220);
@@ -725,11 +738,29 @@
             this.ofdFile.DefaultExt = "dat";
             this.ofdFile.Filter = "データ|*.dat|その他|*.*";
             // 
-            // miFileRemove
+            // cmsItem
             // 
-            this.miFileRemove.Name = "miFileRemove";
-            this.miFileRemove.Size = new System.Drawing.Size(191, 22);
-            this.miFileRemove.Text = "ファイルリストから削除(&R)";
+            this.cmsItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsiEdit,
+            this.mcsiDelete});
+            this.cmsItem.Name = "cmsItem";
+            this.cmsItem.Size = new System.Drawing.Size(165, 48);
+            // 
+            // cmsiEdit
+            // 
+            this.cmsiEdit.Name = "cmsiEdit";
+            this.cmsiEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.cmsiEdit.Size = new System.Drawing.Size(164, 22);
+            this.cmsiEdit.Text = "編集(&E)";
+            this.cmsiEdit.Click += new System.EventHandler(this.miItemEdit_Click);
+            // 
+            // mcsiDelete
+            // 
+            this.mcsiDelete.Name = "mcsiDelete";
+            this.mcsiDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.mcsiDelete.Size = new System.Drawing.Size(164, 22);
+            this.mcsiDelete.Text = "削除(&D)";
+            this.mcsiDelete.Click += new System.EventHandler(this.miItemDelete_Click);
             // 
             // Form1
             // 
@@ -759,6 +790,7 @@
             this.pnlInfoUpper.ResumeLayout(false);
             this.pnlImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
+            this.cmsItem.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -836,6 +868,9 @@
         private System.Windows.Forms.ToolStripMenuItem miItemEdit;
         private System.Windows.Forms.ToolStripMenuItem miFileAdd;
         private System.Windows.Forms.ToolStripMenuItem miFileRemove;
+        private System.Windows.Forms.ContextMenuStrip cmsItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsiEdit;
+        private System.Windows.Forms.ToolStripMenuItem mcsiDelete;
     }
 }
 
