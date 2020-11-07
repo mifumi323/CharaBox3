@@ -1218,6 +1218,7 @@ namespace CharaBox3
 
         private void miItemDelete_Click(object sender, EventArgs e)
         {
+            if (data.selected < 0 || data.selected >= data.chara.Length) return;
             var title = $"{data.chara[data.selected].name[0]}の削除";
             if (MessageBox.Show("削除してよいのですか？", title, MessageBoxButtons.YesNo) == DialogResult.No) return;
             if (MessageBox.Show("やっぱり削除したくないでしょう？", title, MessageBoxButtons.YesNo) == DialogResult.Yes) return;
